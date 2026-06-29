@@ -62,7 +62,7 @@ body::after{
     top:0;
     left:0;
     width:100%;
-    background:rgba(3,13,24,0.92);
+    background:rgba(3,13,24,0.94);
     backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(77,190,255,0.35);
     z-index:1000;
@@ -266,24 +266,44 @@ section h2{
 
 .gallery{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:18px;
 }
 
 .gallery-item{
-    height:180px;
+    height:210px;
     border-radius:18px;
     border:1px solid rgba(95,205,255,0.28);
-    background:
-        linear-gradient(rgba(4,18,30,0.55),rgba(4,18,30,0.55)),
-        radial-gradient(circle at top left,#2f76a8,#10283c 55%,#07111b 100%);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:#9bdcff;
+    background:#07111b;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 0 18px rgba(0,150,255,0.08);
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    opacity:0.84;
+    transition:0.3s ease;
+}
+
+.gallery-item span{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:12px;
+    background:rgba(2,7,13,0.84);
+    color:#bfeaff;
     font-weight:bold;
-    padding:20px;
+    text-align:center;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.05);
+    opacity:1;
 }
 
 .notice{
@@ -352,7 +372,7 @@ footer{
                 <div class="subtitle">Das Logbuch eines Highsec-Miners</div>
 
                 <p class="slogan">
-                    Aus Erz werden Geschichten.  
+                    Aus Erz werden Geschichten.
                     Zwischen Orca, Skiffs, Jita-Transporten und gelben Totenköpfen entsteht das Tagebuch einer kleinen Miningfirma in New Eden.
                 </p>
 
@@ -464,15 +484,42 @@ footer{
         <h2>🖼 Galerie</h2>
 
         <div class="gallery">
-            <div class="gallery-item">Flotte im Belt<br>Screenshot folgt</div>
-            <div class="gallery-item">Der erste leere Belt<br>Screenshot folgt</div>
-            <div class="gallery-item">Jita-Verkäufe<br>Screenshot folgt</div>
-            <div class="gallery-item">Waskisen Sicherheitslage<br>Screenshot folgt</div>
+
+            <div class="gallery-item">
+                <img src="bilder/flotte-im-belt.png" alt="Flotte im Belt">
+                <span>Flotte im Belt</span>
+            </div>
+
+            <div class="gallery-item">
+                <img src="bilder/letzter-asteroid.png" alt="Der letzte Asteroid">
+                <span>Der letzte Asteroid</span>
+            </div>
+
+            <div class="gallery-item">
+                <img src="bilder/jita-verkaeufe.png" alt="Jita Verkäufe">
+                <span>Jita-Verkäufe</span>
+            </div>
+
+            <div class="gallery-item">
+                <img src="bilder/waskisen-sicherheit.png" alt="Waskisen Sicherheitslage">
+                <span>Waskisen Sicherheitslage</span>
+            </div>
+
+            <div class="gallery-item">
+                <img src="bilder/occator-ladung.png" alt="Occator Ladung">
+                <span>Bollwerk Transit beladen</span>
+            </div>
+
+            <div class="gallery-item">
+                <img src="bilder/corp-wallet.png" alt="Corporation Wallet">
+                <span>Firmenkonto</span>
+            </div>
+
         </div>
 
         <p class="notice" style="margin-top:20px;">
-            Hier kommen später die echten Screenshots der Nordsee Mining GmbH rein:
-            Orca, Skiffs, leere Belts, Wallet-Erfolge und besondere Begegnungen im Local.
+            Erste Bilddokumente aus dem Archiv der Nordsee Mining GmbH:
+            Flottenbetrieb, Logistik, Jita-Verkäufe, Sicherheitslage und Firmenvermögen.
         </p>
     </section>
 
