@@ -13,6 +13,30 @@ body{
     font-family:Arial, Helvetica, sans-serif;
 }
 
+.menu{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:rgba(7,18,29,0.95);
+    border-bottom:1px solid #1b7fc8;
+    text-align:center;
+    padding:15px;
+    z-index:1000;
+    box-shadow:0 0 20px rgba(31,143,214,0.4);
+}
+
+.menu a{
+    color:#8fd5ff;
+    text-decoration:none;
+    margin:0 18px;
+    font-weight:bold;
+}
+
+.menu a:hover{
+    color:white;
+}
+
 .hero{
     min-height:100vh;
     display:flex;
@@ -22,12 +46,13 @@ body{
     background:
         radial-gradient(circle at top, #14395c 0%, #050b12 55%),
         linear-gradient(180deg,#07131f,#02060a);
+    padding-top:70px;
 }
 
 .panel{
     border:1px solid #1f8fd6;
     box-shadow:0 0 30px #0b6fa8;
-    background:rgba(5,15,25,0.85);
+    background:rgba(5,15,25,0.88);
     padding:45px;
     max-width:900px;
     border-radius:18px;
@@ -107,6 +132,14 @@ footer{
 
 <body>
 
+<nav class="menu">
+    <a href="#">🏠 Home</a>
+    <a href="#logbuch">📖 Logbuch</a>
+    <a href="#flotte">🚛 Flotte</a>
+    <a href="#sicherheit">🛡 Sicherheit</a>
+    <a href="#archiv">📦 Archiv</a>
+</nav>
+
 <div class="hero">
     <div class="panel">
         <h1>🐋 Nordsee Mining GmbH</h1>
@@ -117,14 +150,17 @@ footer{
                 <strong>Status</strong><br>
                 <span class="green">🟢 Mining aktiv</span>
             </div>
+
             <div class="card">
                 <strong>Heimatsystem</strong><br>
                 Waskisen
             </div>
+
             <div class="card">
                 <strong>Flotte</strong><br>
                 1 Orca · 4 Skiffs · 1 Occator
             </div>
+
             <div class="card">
                 <strong>Motto</strong><br>
                 Erz rein – ISK raus
@@ -137,10 +173,12 @@ footer{
 
 <div class="section" id="logbuch">
     <h2>📖 Logbuch</h2>
+
     <p class="quote">
         „Viele Piloten suchen Ruhm. Andere suchen den Kampf.
         Wir haben unseren Platz zwischen den Asteroiden gefunden.“
     </p>
+
     <p>
         Dies ist das Logbuch der Nordsee Mining GmbH.
         Eine Geschichte über Highsec-Mining, Waskisen, Jita,
@@ -148,8 +186,9 @@ footer{
     </p>
 </div>
 
-<div class="section">
+<div class="section" id="flotte">
     <h2>🚛 Unsere Flotte</h2>
+
     <p>
         🐋 <strong>Bollwerk Prime VI</strong> – Orca, Herzstück der Miningflotte.<br>
         ⛏️ <strong>Vier Skiffs</strong> – zuverlässige Arbeitsschiffe im Belt.<br>
@@ -158,11 +197,27 @@ footer{
     </p>
 </div>
 
-<div class="section">
+<div class="section" id="sicherheit">
     <h2>🛡 Sicherheitsbericht</h2>
+
     <p>
-        Sicherheitslage Waskisen: <span class="green">Grün bis Gelb</span><br>
-        Besonderer Beobachtungspunkt: yemany – erscheint regelmäßig mit gelbem Totenkopf und verschwindet wieder.
+        Sicherheitslage Waskisen:
+        <span class="green">Grün bis Gelb</span>
+    </p>
+
+    <p>
+        Besonderer Beobachtungspunkt:
+        <strong>yemany</strong> – erscheint regelmäßig mit gelbem Totenkopf und verschwindet wieder.
+    </p>
+</div>
+
+<div class="section" id="archiv">
+    <h2>📦 Firmenarchiv</h2>
+
+    <p>
+        Hier entstehen später die Kapitel der Nordsee Mining GmbH:
+        Jita-Transporte, leergeräumte Belts, Begegnungen im Local,
+        Sicherheitsberichte und Geschichten aus dem Alltag eines Highsec-Miners.
     </p>
 </div>
 
