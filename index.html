@@ -1,113 +1,173 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nordsee Mining GmbH</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nordsee Mining GmbH</title>
 
-    <style>
-        body{
-            margin:0;
-            background:#09111b;
-            color:white;
-            font-family:Arial,Helvetica,sans-serif;
-            text-align:center;
-        }
+<style>
+body{
+    margin:0;
+    background:#050b12;
+    color:#e8f4ff;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-        header{
-            padding:80px 20px;
-            background:linear-gradient(#10253d,#09111b);
-        }
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+        radial-gradient(circle at top, #14395c 0%, #050b12 55%),
+        linear-gradient(180deg,#07131f,#02060a);
+}
 
-        h1{
-            font-size:60px;
-            margin-bottom:10px;
-        }
+.panel{
+    border:1px solid #1f8fd6;
+    box-shadow:0 0 30px #0b6fa8;
+    background:rgba(5,15,25,0.85);
+    padding:45px;
+    max-width:900px;
+    border-radius:18px;
+}
 
-        h2{
-            color:#7dc9ff;
-            font-weight:normal;
-        }
+h1{
+    font-size:56px;
+    margin:0;
+    color:#7fd3ff;
+}
 
-        .box{
-            max-width:900px;
-            margin:50px auto;
-            padding:30px;
-            background:#12263c;
-            border-radius:15px;
-        }
+h2{
+    font-weight:normal;
+    color:#d6ecff;
+    margin-top:10px;
+}
 
-        .button{
-            display:inline-block;
-            margin:15px;
-            padding:15px 30px;
-            background:#1d7dd8;
-            color:white;
-            text-decoration:none;
-            border-radius:10px;
-            font-size:20px;
-        }
+.status{
+    margin:35px 0;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
 
-        .button:hover{
-            background:#33a0ff;
-        }
+.card{
+    background:#0d1e30;
+    border:1px solid #255d85;
+    padding:18px;
+    border-radius:12px;
+}
 
-        footer{
-            margin-top:80px;
-            padding:20px;
-            color:#8ba7c2;
-        }
-    </style>
+.green{
+    color:#63ff9f;
+}
 
+.button{
+    display:inline-block;
+    margin-top:25px;
+    padding:16px 35px;
+    border:1px solid #7fd3ff;
+    color:#7fd3ff;
+    text-decoration:none;
+    border-radius:10px;
+    font-size:20px;
+}
+
+.button:hover{
+    background:#7fd3ff;
+    color:#050b12;
+}
+
+.section{
+    max-width:1000px;
+    margin:70px auto;
+    padding:0 25px;
+}
+
+.section h2{
+    color:#7fd3ff;
+    border-bottom:1px solid #255d85;
+    padding-bottom:10px;
+}
+
+.quote{
+    font-size:24px;
+    color:#ccecff;
+    font-style:italic;
+}
+
+footer{
+    text-align:center;
+    color:#7895aa;
+    padding:40px;
+}
+</style>
 </head>
 
 <body>
 
-<header>
+<div class="hero">
+    <div class="panel">
+        <h1>🐋 Nordsee Mining GmbH</h1>
+        <h2>Das Logbuch eines Highsec-Miners</h2>
 
-<h1>🐋 Nordsee Mining GmbH</h1>
+        <div class="status">
+            <div class="card">
+                <strong>Status</strong><br>
+                <span class="green">🟢 Mining aktiv</span>
+            </div>
+            <div class="card">
+                <strong>Heimatsystem</strong><br>
+                Waskisen
+            </div>
+            <div class="card">
+                <strong>Flotte</strong><br>
+                1 Orca · 4 Skiffs · 1 Occator
+            </div>
+            <div class="card">
+                <strong>Motto</strong><br>
+                Erz rein – ISK raus
+            </div>
+        </div>
 
-<h2>Das Logbuch eines Highsec-Miners</h2>
+        <a class="button" href="#logbuch">System betreten</a>
+    </div>
+</div>
 
-</header>
+<div class="section" id="logbuch">
+    <h2>📖 Logbuch</h2>
+    <p class="quote">
+        „Viele Piloten suchen Ruhm. Andere suchen den Kampf.
+        Wir haben unseren Platz zwischen den Asteroiden gefunden.“
+    </p>
+    <p>
+        Dies ist das Logbuch der Nordsee Mining GmbH.
+        Eine Geschichte über Highsec-Mining, Waskisen, Jita,
+        volle Frachträume, gelbe Totenköpfe und den Aufbau einer eigenen kleinen Firma in New Eden.
+    </p>
+</div>
 
-<div class="box">
+<div class="section">
+    <h2>🚛 Unsere Flotte</h2>
+    <p>
+        🐋 <strong>Bollwerk Prime VI</strong> – Orca, Herzstück der Miningflotte.<br>
+        ⛏️ <strong>Vier Skiffs</strong> – zuverlässige Arbeitsschiffe im Belt.<br>
+        🚛 <strong>Bollwerk Transit</strong> – Occator, Lebensader nach Jita.<br>
+        🛡️ <strong>Final Warning VII</strong> – Drake, bewaffnete Erinnerung daran, dass nicht alles im All friedlich ist.
+    </p>
+</div>
 
-<p>
-
-Viele Piloten suchen Ruhm.
-
-<br><br>
-
-Andere suchen den Kampf.
-
-<br><br>
-
-Wir haben unseren Platz zwischen den Asteroiden gefunden.
-
-</p>
-
-<p>
-
-Willkommen auf der offiziellen Webseite der
-<b>Nordsee Mining GmbH</b>.
-
-</p>
-
-<a class="button" href="#">
-📖 Logbuch
-</a>
-
-<a class="button" href="#">
-🚛 Unsere Flotte
-</a>
-
+<div class="section">
+    <h2>🛡 Sicherheitsbericht</h2>
+    <p>
+        Sicherheitslage Waskisen: <span class="green">Grün bis Gelb</span><br>
+        Besonderer Beobachtungspunkt: yemany – erscheint regelmäßig mit gelbem Totenkopf und verschwindet wieder.
+    </p>
 </div>
 
 <footer>
-
-Fly Safe o7
-
+    Nordsee Mining GmbH · Waskisen Industrial Division · Fly Safe o7
 </footer>
 
 </body>
