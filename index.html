@@ -6,15 +6,8 @@
 <title>Nordsee Mining GmbH</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 
 body{
     font-family:Arial, Helvetica, sans-serif;
@@ -245,9 +238,7 @@ section h2{
     margin-bottom:18px;
 }
 
-.log-entry h3{
-    color:white;
-}
+.log-entry h3{color:white;}
 
 .log-entry small{
     color:#8fd5ff;
@@ -255,9 +246,7 @@ section h2{
     margin:6px 0 10px;
 }
 
-.fleet-card{
-    min-height:190px;
-}
+.fleet-card{min-height:190px;}
 
 .ship-icon{
     font-size:38px;
@@ -277,6 +266,7 @@ section h2{
     background:#07111b;
     overflow:hidden;
     position:relative;
+    cursor:pointer;
     box-shadow:0 0 18px rgba(0,150,255,0.08);
 }
 
@@ -312,6 +302,56 @@ section h2{
     background:rgba(0,130,200,0.10);
     border:1px solid rgba(95,205,255,0.20);
     color:#cbe8f8;
+}
+
+.lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.88);
+    z-index:3000;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+}
+
+.lightbox.active{
+    display:flex;
+}
+
+.lightbox-content{
+    max-width:95vw;
+    max-height:90vh;
+    text-align:center;
+}
+
+.lightbox-content img{
+    max-width:100%;
+    max-height:80vh;
+    border-radius:14px;
+    border:1px solid rgba(95,205,255,0.45);
+    box-shadow:0 0 40px rgba(0,160,255,0.35);
+}
+
+.lightbox-caption{
+    margin-top:14px;
+    color:#bfeaff;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.close{
+    position:fixed;
+    top:22px;
+    right:32px;
+    font-size:42px;
+    color:#9bdcff;
+    cursor:pointer;
+    z-index:3100;
+}
+
+.close:hover{
+    color:white;
 }
 
 footer{
@@ -485,32 +525,32 @@ footer{
 
         <div class="gallery">
 
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openLightbox('bilder/flotte-im-belt.png','Flotte im Belt')">
                 <img src="bilder/flotte-im-belt.png" alt="Flotte im Belt">
                 <span>Flotte im Belt</span>
             </div>
 
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openLightbox('bilder/letzter-asteroid.png','Der letzte Asteroid')">
                 <img src="bilder/letzter-asteroid.png" alt="Der letzte Asteroid">
                 <span>Der letzte Asteroid</span>
             </div>
 
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openLightbox('bilder/jita-verkaeufe.png','Jita-Verkäufe')">
                 <img src="bilder/jita-verkaeufe.png" alt="Jita Verkäufe">
                 <span>Jita-Verkäufe</span>
             </div>
 
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openLightbox('bilder/waskisen-sicherheit.png','Waskisen Sicherheitslage')">
                 <img src="bilder/waskisen-sicherheit.png" alt="Waskisen Sicherheitslage">
                 <span>Waskisen Sicherheitslage</span>
             </div>
 
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openLightbox('bilder/occator-ladung.png','Bollwerk Transit beladen')">
                 <img src="bilder/occator-ladung.png" alt="Occator Ladung">
                 <span>Bollwerk Transit beladen</span>
             </div>
 
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openLightbox('bilder/corp-wallet.png','Firmenkonto')">
                 <img src="bilder/corp-wallet.png" alt="Corporation Wallet">
                 <span>Firmenkonto</span>
             </div>
@@ -537,6 +577,32 @@ footer{
     </footer>
 
 </div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="close">&times;</span>
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+</div>
+
+<script>
+function openLightbox(src, caption){
+    document.getElementById("lightbox-img").src = src;
+    document.getElementById("lightbox-caption").innerText = caption;
+    document.getElementById("lightbox").classList.add("active");
+}
+
+function closeLightbox(){
+    document.getElementById("lightbox").classList.remove("active");
+}
+
+document.addEventListener("keydown", function(event){
+    if(event.key === "Escape"){
+        closeLightbox();
+    }
+});
+</script>
 
 </body>
 </html>
