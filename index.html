@@ -1,229 +1,388 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nordsee Mining GmbH</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nordsee Mining GmbH</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-<style>
-body{
-    margin:0;
-    background:#050b12;
-    color:#e8f4ff;
-    font-family:Arial, Helvetica, sans-serif;
-}
+    html{
+      scroll-behavior:smooth;
+    }
 
-.menu{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    background:rgba(7,18,29,0.95);
-    border-bottom:1px solid #1b7fc8;
-    text-align:center;
-    padding:15px;
-    z-index:1000;
-    box-shadow:0 0 20px rgba(31,143,214,0.4);
-}
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, #123b63 0%, #07111a 35%, #02070d 100%);
+      color:#e8f7ff;
+      overflow-x:hidden;
+      line-height:1.6;
+      position:relative;
+    }
 
-.menu a{
-    color:#8fd5ff;
-    text-decoration:none;
-    margin:0 18px;
-    font-weight:bold;
-}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 80px 120px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1.5px 1.5px at 160px 60px, rgba(143,213,255,0.8), transparent),
+        radial-gradient(1px 1px at 240px 200px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(2px 2px at 320px 100px, rgba(143,213,255,0.8), transparent),
+        radial-gradient(1px 1px at 420px 180px, rgba(255,255,255,0.7), transparent);
+      background-size: 500px 300px;
+      opacity:0.28;
+      animation: starsMove 90s linear infinite;
+      pointer-events:none;
+      z-index:0;
+    }
 
-.menu a:hover{
-    color:white;
-}
+    @keyframes starsMove{
+      from{transform:translateY(0);}
+      to{transform:translateY(300px);}
+    }
 
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:
-        radial-gradient(circle at top, #14395c 0%, #050b12 55%),
-        linear-gradient(180deg,#07131f,#02060a);
-    padding-top:70px;
-}
+    .menu{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      background:rgba(4, 14, 24, 0.92);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(58, 176, 255, 0.35);
+      text-align:center;
+      padding:16px 10px;
+      z-index:1000;
+      box-shadow:0 0 25px rgba(0, 140, 255, 0.15);
+    }
 
-.panel{
-    border:1px solid #1f8fd6;
-    box-shadow:0 0 30px #0b6fa8;
-    background:rgba(5,15,25,0.88);
-    padding:45px;
-    max-width:900px;
-    border-radius:18px;
-}
+    .menu a{
+      color:#8fd5ff;
+      text-decoration:none;
+      margin:0 16px;
+      font-weight:bold;
+      font-size:15px;
+      transition:0.25s ease;
+    }
 
-h1{
-    font-size:56px;
-    margin:0;
-    color:#7fd3ff;
-}
+    .menu a:hover{
+      color:#ffffff;
+      text-shadow:0 0 10px #4fc3ff;
+    }
 
-h2{
-    font-weight:normal;
-    color:#d6ecff;
-    margin-top:10px;
-}
+    .wrapper{
+      position:relative;
+      z-index:1;
+      width:min(1100px, 92%);
+      margin:0 auto;
+      padding-top:110px;
+      padding-bottom:60px;
+    }
 
-.status{
-    margin:35px 0;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:15px;
-}
+    .hero{
+      text-align:center;
+      padding:55px 30px;
+      margin-top:30px;
+      margin-bottom:40px;
+      background:rgba(5, 18, 30, 0.82);
+      border:1px solid rgba(58, 176, 255, 0.45);
+      border-radius:28px;
+      box-shadow:
+        0 0 30px rgba(0, 170, 255, 0.18),
+        inset 0 0 35px rgba(0, 100, 180, 0.12);
+    }
 
-.card{
-    background:#0d1e30;
-    border:1px solid #255d85;
-    padding:18px;
-    border-radius:12px;
-}
+    .logo{
+      font-size:54px;
+      margin-bottom:14px;
+      filter:drop-shadow(0 0 12px rgba(90, 210, 255, 0.45));
+    }
 
-.green{
-    color:#63ff9f;
-}
+    h1{
+      font-size:clamp(36px, 5vw, 68px);
+      color:#7fd0ff;
+      margin-bottom:10px;
+      text-shadow:0 0 20px rgba(76, 192, 255, 0.25);
+    }
 
-.button{
-    display:inline-block;
-    margin-top:25px;
-    padding:16px 35px;
-    border:1px solid #7fd3ff;
-    color:#7fd3ff;
-    text-decoration:none;
-    border-radius:10px;
-    font-size:20px;
-}
+    .subtitle{
+      font-size:clamp(20px, 2vw, 30px);
+      color:#d8efff;
+      margin-bottom:18px;
+    }
 
-.button:hover{
-    background:#7fd3ff;
-    color:#050b12;
-}
+    .lead{
+      max-width:760px;
+      margin:0 auto;
+      color:#bcd6e8;
+      font-size:18px;
+    }
 
-.section{
-    max-width:1000px;
-    margin:70px auto;
-    padding:0 25px;
-}
+    .button-row{
+      margin-top:28px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:16px;
+    }
 
-.section h2{
-    color:#7fd3ff;
-    border-bottom:1px solid #255d85;
-    padding-bottom:10px;
-}
+    .btn{
+      display:inline-block;
+      padding:14px 28px;
+      border-radius:14px;
+      background:linear-gradient(135deg, #1f87ff, #36b7ff);
+      color:#fff;
+      text-decoration:none;
+      font-weight:bold;
+      box-shadow:0 0 20px rgba(38, 162, 255, 0.22);
+      transition:0.25s ease;
+    }
 
-.quote{
-    font-size:24px;
-    color:#ccecff;
-    font-style:italic;
-}
+    .btn:hover{
+      transform:translateY(-2px) scale(1.02);
+      box-shadow:0 0 25px rgba(55, 182, 255, 0.35);
+    }
 
-footer{
-    text-align:center;
-    color:#7895aa;
-    padding:40px;
-}
-</style>
+    .btn.secondary{
+      background:transparent;
+      border:1px solid #3bb7ff;
+      color:#8fd5ff;
+    }
+
+    section{
+      margin:30px 0;
+      padding:32px;
+      background:rgba(7, 20, 32, 0.84);
+      border:1px solid rgba(58, 176, 255, 0.22);
+      border-radius:22px;
+      box-shadow:0 0 20px rgba(0, 150, 255, 0.08);
+    }
+
+    section h2{
+      font-size:28px;
+      color:#7fd0ff;
+      margin-bottom:20px;
+      text-shadow:0 0 10px rgba(70, 180, 255, 0.18);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:rgba(14, 35, 53, 0.92);
+      border:1px solid rgba(88, 195, 255, 0.35);
+      border-radius:18px;
+      padding:22px;
+      min-height:140px;
+      box-shadow:inset 0 0 12px rgba(0, 140, 255, 0.08);
+    }
+
+    .card h3{
+      color:#ffffff;
+      font-size:21px;
+      margin-bottom:10px;
+    }
+
+    .card p{
+      color:#c5dceb;
+    }
+
+    .status-live{
+      color:#59ff93;
+      font-weight:bold;
+      text-shadow:0 0 12px rgba(89, 255, 147, 0.35);
+    }
+
+    .log-entry{
+      background:rgba(12, 31, 48, 0.95);
+      border-left:4px solid #3cb9ff;
+      padding:20px;
+      border-radius:14px;
+      margin-bottom:16px;
+    }
+
+    .log-entry h3{
+      color:#ffffff;
+      margin-bottom:10px;
+    }
+
+    .log-entry small{
+      color:#86cfff;
+      display:block;
+      margin-bottom:10px;
+    }
+
+    .fleet-list{
+      list-style:none;
+      padding-left:0;
+    }
+
+    .fleet-list li{
+      padding:12px 16px;
+      margin-bottom:10px;
+      background:rgba(14, 35, 53, 0.9);
+      border:1px solid rgba(88, 195, 255, 0.25);
+      border-radius:12px;
+      color:#dff4ff;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:18px;
+    }
+
+    .gallery-item{
+      height:170px;
+      border-radius:18px;
+      border:1px solid rgba(88, 195, 255, 0.32);
+      background:
+        linear-gradient(rgba(7,25,40,0.45), rgba(7,25,40,0.45)),
+        radial-gradient(circle at top left, #2f6ea0, #10283c 55%, #07111b 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#9cdcff;
+      font-weight:bold;
+      text-align:center;
+      padding:20px;
+      box-shadow:inset 0 0 20px rgba(0, 160, 255, 0.08);
+    }
+
+    footer{
+      text-align:center;
+      color:#82a9c2;
+      padding:30px 10px 10px;
+      font-size:15px;
+    }
+
+    @media (max-width: 700px){
+      .menu a{
+        display:inline-block;
+        margin:6px 10px;
+        font-size:14px;
+      }
+
+      .wrapper{
+        padding-top:140px;
+      }
+
+      section{
+        padding:22px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<nav class="menu">
-    <a href="#">🏠 Home</a>
+  <nav class="menu">
+    <a href="#home">🏠 Home</a>
     <a href="#logbuch">📖 Logbuch</a>
     <a href="#flotte">🚛 Flotte</a>
-    <a href="#sicherheit">🛡 Sicherheit</a>
-    <a href="#archiv">📦 Archiv</a>
-</nav>
+    <a href="#status">📡 Status</a>
+    <a href="#galerie">🖼 Galerie</a>
+  </nav>
 
-<div class="hero">
-    <div class="panel">
-        <h1>🐋 Nordsee Mining GmbH</h1>
-        <h2>Das Logbuch eines Highsec-Miners</h2>
+  <div class="wrapper">
 
-        <div class="status">
-            <div class="card">
-                <strong>Status</strong><br>
-                <span class="green">🟢 Mining aktiv</span>
-            </div>
+    <section class="hero" id="home">
+      <div class="logo">🐋</div>
+      <h1>Nordsee Mining GmbH</h1>
+      <div class="subtitle">Das Logbuch eines Highsec-Miners</div>
+      <p class="lead">
+        Viele Piloten suchen Ruhm. Andere suchen den Kampf.  
+        Wir haben unseren Platz zwischen den Asteroiden gefunden.
+      </p>
 
-            <div class="card">
-                <strong>Heimatsystem</strong><br>
-                Waskisen
-            </div>
+      <div class="button-row">
+        <a class="btn" href="#logbuch">Zum Logbuch</a>
+        <a class="btn secondary" href="#flotte">Unsere Flotte</a>
+      </div>
+    </section>
 
-            <div class="card">
-                <strong>Flotte</strong><br>
-                1 Orca · 4 Skiffs · 1 Occator
-            </div>
-
-            <div class="card">
-                <strong>Motto</strong><br>
-                Erz rein – ISK raus
-            </div>
+    <section id="status">
+      <h2>📡 Aktueller Status</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Status</h3>
+          <p class="status-live">● Mining aktiv</p>
         </div>
 
-        <a class="button" href="#logbuch">System betreten</a>
-    </div>
-</div>
+        <div class="card">
+          <h3>Heimatsystem</h3>
+          <p>Waskisen</p>
+        </div>
 
-<div class="section" id="logbuch">
-    <h2>📖 Logbuch</h2>
+        <div class="card">
+          <h3>Flottenstärke</h3>
+          <p>1 Orca · 4 Skiffs · 1 Occator</p>
+        </div>
 
-    <p class="quote">
-        „Viele Piloten suchen Ruhm. Andere suchen den Kampf.
-        Wir haben unseren Platz zwischen den Asteroiden gefunden.“
-    </p>
+        <div class="card">
+          <h3>Motto</h3>
+          <p>Erz rein – ISK raus</p>
+        </div>
+      </div>
+    </section>
 
-    <p>
-        Dies ist das Logbuch der Nordsee Mining GmbH.
-        Eine Geschichte über Highsec-Mining, Waskisen, Jita,
-        volle Frachträume, gelbe Totenköpfe und den Aufbau einer eigenen kleinen Firma in New Eden.
-    </p>
-</div>
+    <section id="logbuch">
+      <h2>📖 Logbuch</h2>
 
-<div class="section" id="flotte">
-    <h2>🚛 Unsere Flotte</h2>
+      <div class="log-entry">
+        <h3>Logbucheintrag 001 – Die Rückkehr</h3>
+        <small>Datum: Heute</small>
+        <p>
+          Die Nordsee Mining GmbH hat ihren Platz im Highsec gefunden.  
+          Zwischen Belt, Orca und Skiffs beginnt der Aufbau eines kleinen,
+          aber ehrgeizigen Bergbauunternehmens.
+        </p>
+      </div>
 
-    <p>
-        🐋 <strong>Bollwerk Prime VI</strong> – Orca, Herzstück der Miningflotte.<br>
-        ⛏️ <strong>Vier Skiffs</strong> – zuverlässige Arbeitsschiffe im Belt.<br>
-        🚛 <strong>Bollwerk Transit</strong> – Occator, Lebensader nach Jita.<br>
-        🛡️ <strong>Final Warning VII</strong> – Drake, bewaffnete Erinnerung daran, dass nicht alles im All friedlich ist.
-    </p>
-</div>
+      <div class="log-entry">
+        <h3>Logbucheintrag 002 – Das erste große Räumen</h3>
+        <small>Datum: Bald eintragen</small>
+        <p>
+          Das Belt wurde leergefegt, der Transporter füllte sich und in Jita klingelte die Kasse.
+          Genau so muss ein guter Minertag enden.
+        </p>
+      </div>
+    </section>
 
-<div class="section" id="sicherheit">
-    <h2>🛡 Sicherheitsbericht</h2>
+    <section id="flotte">
+      <h2>🚛 Unsere Flotte</h2>
+      <ul class="fleet-list">
+        <li><strong>Orca</strong> – Herzstück der Flotte und mobile Kommandozentrale</li>
+        <li><strong>Skiff 1</strong> – Frontarbeiter im Asteroidengürtel</li>
+        <li><strong>Skiff 2</strong> – Zweite Abbaulinie</li>
+        <li><strong>Skiff 3</strong> – Verstärkung für volle Ausbeute</li>
+        <li><strong>Skiff 4</strong> – Der letzte Biss im Belt</li>
+        <li><strong>Occator</strong> – Transport, Logistik und sicherer Nachschub</li>
+      </ul>
+    </section>
 
-    <p>
-        Sicherheitslage Waskisen:
-        <span class="green">Grün bis Gelb</span>
-    </p>
+    <section id="galerie">
+      <h2>🖼 Galerie</h2>
+      <div class="gallery">
+        <div class="gallery-item">Screenshot der Flotte im Belt</div>
+        <div class="gallery-item">Orca im Einsatz</div>
+        <div class="gallery-item">Jita-Verkäufe & ISK-Erfolge</div>
+        <div class="gallery-item">Besondere Momente aus dem Logbuch</div>
+      </div>
+    </section>
 
-    <p>
-        Besonderer Beobachtungspunkt:
-        <strong>yemany</strong> – erscheint regelmäßig mit gelbem Totenkopf und verschwindet wieder.
-    </p>
-</div>
+    <footer>
+      Fly Safe o7 · Nordsee Mining GmbH
+    </footer>
 
-<div class="section" id="archiv">
-    <h2>📦 Firmenarchiv</h2>
-
-    <p>
-        Hier entstehen später die Kapitel der Nordsee Mining GmbH:
-        Jita-Transporte, leergeräumte Belts, Begegnungen im Local,
-        Sicherheitsberichte und Geschichten aus dem Alltag eines Highsec-Miners.
-    </p>
-</div>
-
-<footer>
-    Nordsee Mining GmbH · Waskisen Industrial Division · Fly Safe o7
-</footer>
-
+  </div>
 </body>
 </html>
