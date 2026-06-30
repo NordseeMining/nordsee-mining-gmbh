@@ -1,1 +1,83 @@
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nordsee Mining GmbH</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#02070d;color:#e8f7ff;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(41,139,210,.22),transparent 30%),linear-gradient(180deg,#06111d,#02070d);z-index:-2}
+body::after{content:"";position:fixed;inset:0;background-image:radial-gradient(1px 1px at 20px 30px,white,transparent),radial-gradient(1px 1px at 80px 100px,#8fd5ff,transparent),radial-gradient(2px 2px at 260px 200px,#8fd5ff,transparent);background-size:500px 300px;opacity:.18;z-index:-1}
+.menu{position:fixed;top:0;left:0;width:100%;background:rgba(3,13,24,.94);border-bottom:1px solid rgba(77,190,255,.35);z-index:1000;box-shadow:0 0 25px rgba(0,160,255,.18)}
+.menu-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:14px 22px}
+.brand{color:#7fd3ff;font-weight:bold;letter-spacing:1px}.links a{color:#9bdcff;text-decoration:none;margin-left:18px;font-weight:bold;font-size:14px}.links a:hover{color:white}
+.wrapper{width:min(1200px,92%);margin:auto;padding-top:100px}
+.hero{min-height:86vh;display:grid;place-items:center}
+.terminal{width:100%;border:1px solid rgba(77,190,255,.55);border-radius:24px;background:linear-gradient(rgba(2,7,13,.72),rgba(2,7,13,.88)),url("bilder/drake-titel.png") center/cover no-repeat;box-shadow:0 0 55px rgba(0,160,255,.26),inset 0 0 60px rgba(0,0,0,.65);overflow:hidden}
+.terminal-top{background:rgba(8,30,48,.86);border-bottom:1px solid rgba(77,190,255,.35);padding:14px 18px;display:flex;justify-content:space-between;color:#9bdcff;font-size:14px}
+.terminal-body{padding:70px 35px;text-align:center;min-height:620px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.logo-subline{color:#89d9ff;letter-spacing:3px;font-size:13px;font-weight:bold;margin-bottom:8px;text-transform:uppercase}
+.badge{width:120px;height:120px;border:3px solid #67cfff;border-radius:50%;display:grid;place-items:center;margin-bottom:18px;background:rgba(6,24,40,.85);box-shadow:0 0 25px rgba(80,200,255,.45);font-size:54px}
+h1{font-size:clamp(38px,6vw,78px);color:#7fd3ff;margin-top:10px;text-shadow:0 0 24px rgba(100,200,255,.35)}
+.subtitle{font-size:clamp(20px,2.2vw,30px);color:#f0fbff;margin:12px 0 22px;text-shadow:0 0 12px rgba(0,0,0,.8)}
+.slogan{color:#d5ecf8;max-width:800px;margin:0 auto 30px;font-size:19px;text-shadow:0 0 12px rgba(0,0,0,.9)}
+.button-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{padding:14px 28px;border-radius:12px;text-decoration:none;color:white;font-weight:bold;background:linear-gradient(135deg,#1d7dd8,#36c0ff);box-shadow:0 0 22px rgba(0,160,255,.25);transition:.25s}
+.btn.secondary{background:rgba(2,7,13,.35);border:1px solid #57c9ff;color:#9bdcff}.btn.archive{background:linear-gradient(135deg,#b47b22,#ffd36b);color:#07111b}
+.btn:hover{transform:translateY(-2px)}
+.bootline{margin:28px auto 0;max-width:670px;padding:14px;border:1px solid rgba(98,255,156,.25);border-radius:12px;background:rgba(2,7,13,.55);font-family:Consolas,monospace;color:#9dffbf;text-align:left}
+section{margin:34px 0;padding:34px;border-radius:22px;background:rgba(6,20,34,.86);border:1px solid rgba(77,190,255,.22);box-shadow:0 0 24px rgba(0,140,255,.08)}
+section h2{color:#7fd3ff;font-size:30px;margin-bottom:22px;border-bottom:1px solid rgba(77,190,255,.25);padding-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{background:rgba(12,35,55,.92);border:1px solid rgba(95,205,255,.28);border-radius:18px;padding:22px}.card h3{color:white;margin-bottom:8px;font-size:21px}.card p{color:#c8dfed}
+.green{color:#62ff9c;font-weight:bold}.gold{color:#ffd36b}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:stretch}
+.cinematic-card{min-height:330px;border-radius:18px;border:1px solid rgba(95,205,255,.28);background:linear-gradient(rgba(2,7,13,.25),rgba(2,7,13,.75)),url("bilder/orca-titel.png") center/cover no-repeat;display:flex;align-items:flex-end;padding:24px}
+.cinematic-card.drake{background:linear-gradient(rgba(2,7,13,.25),rgba(2,7,13,.78)),url("bilder/drake-patrouille.png") center/cover no-repeat}
+.cinematic-card h3{font-size:26px;color:white;text-shadow:0 0 12px #000}.cinematic-card p{color:#d7efff;text-shadow:0 0 10px #000}
+.archive-preview{border-left:5px solid #ffd36b;background:rgba(255,211,107,.08);border-radius:16px;padding:22px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.gallery-item{height:210px;border-radius:18px;border:1px solid rgba(95,205,255,.28);background:#07111b;overflow:hidden;position:relative;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;opacity:.84;transition:.3s}.gallery-item span{position:absolute;left:0;right:0;bottom:0;padding:12px;background:rgba(2,7,13,.84);color:#bfeaff;font-weight:bold;text-align:center}.gallery-item:hover img{transform:scale(1.05);opacity:1}
+.notice{padding:18px;border-radius:14px;background:rgba(0,130,200,.10);border:1px solid rgba(95,205,255,.20);color:#cbe8f8}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:3000;align-items:center;justify-content:center;padding:30px}.lightbox.active{display:flex}
+.lightbox-content{max-width:95vw;max-height:90vh;text-align:center}.lightbox-content img{max-width:100%;max-height:80vh;border-radius:14px;border:1px solid rgba(95,205,255,.45)}.lightbox-caption{margin-top:14px;color:#bfeaff;font-size:20px;font-weight:bold}
+.close{position:fixed;top:22px;right:32px;font-size:42px;color:#9bdcff;cursor:pointer;z-index:3100}
+footer{text-align:center;color:#7f9fb5;padding:45px 10px}
+@media(max-width:850px){.split{grid-template-columns:1fr}.menu-inner{flex-direction:column;gap:10px}.links a{margin:0 8px;font-size:13px}.wrapper{padding-top:140px}.terminal-body{padding:42px 20px;min-height:560px}}
+</style>
+</head>
+<body>
+<nav class="menu"><div class="menu-inner"><div class="brand">NORDSEE MINING GmbH</div><div class="links"><a href="#home">Home</a><a href="#status">Status</a><a href="chronik.html">Archiv</a><a href="#flotte">Flotte</a><a href="#galerie">Galerie</a></div></div></nav>
+<div class="wrapper">
+<div class="hero" id="home"><div class="terminal"><div class="terminal-top"><span>Industrial Control Terminal</span><span>Waskisen · The Citadel · Highsec</span></div><div class="terminal-body">
+<div class="badge">🛡️</div><div class="logo-subline">Waskisen Industrial Division</div><h1>Nordsee Mining GmbH</h1><div class="subtitle">Industrie bei Tag · Sicherheit bei Nacht</div>
+<p class="slogan">Aus Erz werden Geschichten. Aus Schiffen wird eine Flotte. Aus Waskisen wird ein Heimathafen.</p>
+<div class="button-row"><a class="btn archive" href="chronik.html">📂 Firmenarchiv öffnen</a><a class="btn" href="#status">Systemstatus</a><a class="btn secondary" href="#flotte">Flotte ansehen</a></div>
+<div class="bootline">NMG TERMINAL &gt; Final Warning VII im Patrouillenmodus · Archivzugriff freigegeben █</div>
+</div></div></div>
+<section id="status"><h2>📡 Firmenstatus</h2><div class="grid"><div class="card"><h3>Status</h3><p class="green">● Mining aktiv</p></div><div class="card"><h3>Heimatsystem</h3><p>Waskisen</p></div><div class="card"><h3>Flottenstärke</h3><p>1 Orca · 4 Skiffs · 1 Occator · 1 Drake</p></div><div class="card"><h3>Firmenmotto</h3><p class="gold">Erz rein – ISK raus</p></div></div></section>
+<section><h2>📂 Firmenarchiv</h2><div class="split"><div class="archive-preview"><h3>Version 1.2 · Schiffe im Fokus</h3><p>Die öffentliche Startseite wurde mit Einsatzbildern der Flotte erweitert. Final Warning VII sichert den Nachthimmel, während Bollwerk Prime VI das industrielle Herz der Firma bleibt.</p><a class="btn archive" href="chronik.html">Archiv betreten</a></div><div class="cinematic-card drake"><div><h3>Final Warning VII</h3><p>Drake · Patrouille · Gefahrenabwehr</p></div></div></div></section>
+<section id="flotte"><h2>🚛 Unsere Flotte</h2><div class="grid"><div class="card"><h3>🐋 Bollwerk Prime VI</h3><p>Orca · Herzstück der Flotte · Kommandoschiff im Belt</p></div><div class="card"><h3>⛏️ Skiff-Flotte</h3><p>Vier robuste Abbauschiffe mit Mining Drone II und Orca-Unterstützung.</p></div><div class="card"><h3>🚛 Bollwerk Transit</h3><p>Occator · Transporter nach Jita · Lebensader der Logistik.</p></div><div class="card"><h3>🛡️ Final Warning VII</h3><p>Drake · Patrouille · bewaffnete Erinnerung, dass New Eden nicht immer friedlich ist.</p></div></div></section>
+<section><h2>🐋 Industrieabteilung</h2><div class="split"><div class="cinematic-card"><div><h3>Bollwerk Prime VI</h3><p>Orca · Flottenkommando · Heimathafen Waskisen</p></div></div><div class="archive-preview"><h3>Tagschicht</h3><p>Die Orca steht für Ruhe, Struktur und Produktion. Um sie herum entstehen die täglichen Einsatzberichte der Nordsee Mining GmbH.</p></div></div></section>
+<section id="galerie"><h2>🖼 Galerie</h2><div class="gallery">
+<div class="gallery-item" onclick="openLightbox('bilder/drake-titel.png','Final Warning VII')"><img src="bilder/drake-titel.png" alt="Final Warning VII"><span>Final Warning VII</span></div>
+<div class="gallery-item" onclick="openLightbox('bilder/orca-titel.png','Bollwerk Prime VI')"><img src="bilder/orca-titel.png" alt="Bollwerk Prime VI"><span>Bollwerk Prime VI</span></div>
+<div class="gallery-item" onclick="openLightbox('bilder/flotte-im-belt.png','Flotte im Belt')"><img src="bilder/flotte-im-belt.png" alt="Flotte im Belt"><span>Flotte im Belt</span></div>
+<div class="gallery-item" onclick="openLightbox('bilder/jita-verkaeufe.png','Jita-Verkäufe')"><img src="bilder/jita-verkaeufe.png" alt="Jita Verkäufe"><span>Jita-Verkäufe</span></div>
+<div class="gallery-item" onclick="openLightbox('bilder/waskisen-sicherheit.png','Waskisen Sicherheitslage')"><img src="bilder/waskisen-sicherheit.png" alt="Waskisen Sicherheitslage"><span>Waskisen Sicherheitslage</span></div>
+<div class="gallery-item" onclick="openLightbox('bilder/corp-wallet.png','Firmenkonto')"><img src="bilder/corp-wallet.png" alt="Corporation Wallet"><span>Firmenkonto</span></div>
+</div><p class="notice" style="margin-top:20px;">Erste Bilddokumente aus dem Archiv der Nordsee Mining GmbH: Industrie, Patrouille, Logistik, Sicherheitslage und Firmenvermögen.</p></section>
+<section><h2>🛡 Sicherheitslage</h2><p>Aktuelle Einstufung: <span class="green">Grün bis Gelb</span><br>Waskisen bleibt ein gutes Heimatsystem, dennoch wird Local regelmäßig beobachtet. Final Warning VII ist als bewaffnete Rückversicherung im Firmenregister geführt.</p></section>
+<footer>Nordsee Mining GmbH · Waskisen Industrial Division · Fly Safe o7</footer>
+</div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><span class="close">&times;</span><div class="lightbox-content" onclick="event.stopPropagation()"><img id="lightbox-img" src="" alt=""><div class="lightbox-caption" id="lightbox-caption"></div></div></div>
+<script>
+function openLightbox(src,caption){document.getElementById("lightbox-img").src=src;document.getElementById("lightbox-caption").innerText=caption;document.getElementById("lightbox").classList.add("active")}
+function closeLightbox(){document.getElementById("lightbox").classList.remove("active")}
+document.addEventListener("keydown",function(event){if(event.key==="Escape"){closeLightbox()}})
+</script>
+</body>
+</html>
