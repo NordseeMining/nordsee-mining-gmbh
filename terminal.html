@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NMG Terminal - Nordsee Mining GmbH</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Consolas,monospace;background:#02070d;color:#9dffbf;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(41,139,210,.22),transparent 30%),linear-gradient(180deg,#06111d,#02070d);z-index:-2}
+.menu{position:fixed;top:0;left:0;width:100%;background:rgba(3,13,24,.96);border-bottom:1px solid rgba(77,190,255,.35);z-index:10}
+.menu-inner{max-width:1200px;margin:auto;padding:14px 22px;display:flex;justify-content:space-between;align-items:center}
+.brand{color:#7fd3ff;font-family:Arial,Helvetica,sans-serif;font-weight:bold;letter-spacing:1px}
+.menu a{color:#9bdcff;text-decoration:none;margin-left:18px;font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:14px}
+.wrapper{width:min(1100px,94%);margin:auto;padding:100px 0 50px}
+.terminal{border:1px solid #1b7fc8;border-radius:18px;background:rgba(0,10,18,.92);box-shadow:0 0 45px rgba(0,160,255,.25);overflow:hidden}
+.top{padding:14px 18px;background:#071d2c;border-bottom:1px solid #1b7fc8;display:flex;justify-content:space-between;color:#8fd5ff}
+.screen{padding:24px;min-height:620px}
+.line{margin:8px 0}
+.green{color:#62ff9c}.blue{color:#7fd3ff}.gold{color:#ffd36b}.red{color:#ff8f70}
+.cmds{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:22px 0}
+button{background:#071d2c;color:#9bdcff;border:1px solid #1b7fc8;border-radius:10px;padding:12px;cursor:pointer;font-family:Consolas,monospace;font-weight:bold}
+button:hover{background:#103655;color:white;box-shadow:0 0 18px rgba(80,200,255,.25)}
+.output{margin-top:20px;border-left:4px solid #1b7fc8;background:rgba(10,35,55,.7);padding:18px;border-radius:12px;color:#e8f7ff;min-height:180px;white-space:pre-wrap}
+.inputbar{display:flex;gap:10px;margin-top:18px}
+input{flex:1;background:#02070d;border:1px solid #1b7fc8;color:#9dffbf;border-radius:10px;padding:13px;font-family:Consolas,monospace}
+.enter{width:130px}
+.cursor{animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}
+footer{text-align:center;color:#7f9fb5;padding:30px;font-family:Arial,Helvetica,sans-serif}
+@media(max-width:700px){.menu-inner{flex-direction:column;gap:8px}.wrapper{padding-top:135px}.top{flex-direction:column;gap:6px}.enter{width:auto}}
+</style>
+</head>
+<body>
+<nav class="menu">
+<div class="menu-inner">
+<div class="brand">NORDSEE MINING GmbH</div>
+<div>
+<a href="index.html">Home</a>
+<a href="chronik.html">Archiv</a>
+<a href="schiffsregister.html">Schiffsregister</a>
+<a href="terminal.html">Terminal</a>
+</div>
+</div>
+</nav>
+
+<div class="wrapper">
+<div class="terminal">
+<div class="top">
+<span>NMG CORE TERMINAL v1.4</span>
+<span>WASKISEN · ZUGRIFF: ÖFFENTLICH</span>
+</div>
+<div class="screen">
+<div class="line blue">NORDSEE MINING GmbH // INDUSTRIAL CONTROL TERMINAL</div>
+<div class="line">Verbindung wird hergestellt...</div>
+<div class="line green">ZUGRIFF GEWÄHRT.</div>
+<div class="line">Willkommen im öffentlichen Firmenknoten der Nordsee Mining GmbH<span class="cursor"> █</span></div>
+
+<div class="cmds">
+<button onclick="runCmd('status')">status</button>
+<button onclick="runCmd('flotte')">flotte</button>
+<button onclick="runCmd('orca')">orca</button>
+<button onclick="runCmd('drake')">drake</button>
+<button onclick="runCmd('logistik')">logistik</button>
+<button onclick="runCmd('sicherheit')">sicherheit</button>
+<button onclick="runCmd('archiv')">archiv</button>
+<button onclick="runCmd('hilfe')">hilfe</button>
+</div>
+
+<div class="output" id="output">> Befehl auswählen oder unten eintippen.
+> Verfügbare Befehle: status, flotte, orca, drake, logistik, sicherheit, archiv, hilfe</div>
+
+<div class="inputbar">
+<input id="commandInput" placeholder="Befehl eingeben, z.B. flotte" onkeydown="if(event.key==='Enter')sendInput()">
+<button class="enter" onclick="sendInput()">ENTER</button>
+</div>
+</div>
+</div>
+<footer>Nordsee Mining GmbH · Waskisen Industrial Division · Terminalzugriff protokolliert · Fly Safe o7</footer>
+</div>
+
+<script>
+const data={
+status:`> STATUSABFRAGE
+SYSTEM ............ WASKISEN
+SICHERHEIT ........ GRÜN BIS GELB
+MINING ............ AKTIV
+FIRMENARCHIV ...... ONLINE
+SCHIFFSREGISTER ... ONLINE
+LETZTE MELDUNG .... FINAL WARNING VII PATROUILLIERT`,
+
+flotte:`> FLOTTENREGISTER
+[0001] Bollwerk Prime VI .... Orca ......... ONLINE
+[0002] Final Warning VII .... Drake ........ PATROUILLE
+[0003] Skiff-Flotte ......... Mining Wing ... AKTIV
+[0004] Bollwerk Transit ..... Occator ...... BEREIT
+
+Befehl "orca" oder "drake" für Detailakte.`,
+
+orca:`> SCHIFFSAKTE 0001
+NAME .............. BOLLWERK PRIME VI
+KLASSE ............ ORCA
+ROLLE ............. FLOTTENKOMMANDO
+HEIMATSYSTEM ...... WASKISEN
+ABTEILUNG ......... INDUSTRIE
+STATUS ............ ONLINE
+
+NOTIZ:
+Wenn Bollwerk Prime VI im Belt steht, beginnt der Arbeitstag der Nordsee Mining GmbH.`,
+
+drake:`> SCHIFFSAKTE 0002
+NAME .............. FINAL WARNING VII
+KLASSE ............ DRAKE
+ROLLE ............. GEFAHRENABWEHR
+HEIMATSYSTEM ...... WASKISEN
+ABTEILUNG ......... SICHERHEIT
+STATUS ............ PATROUILLE
+
+NOTIZ:
+Sie ist die bewaffnete Erinnerung daran, dass New Eden schön ist – aber niemals harmlos.`,
+
+logistik:`> LOGISTIKKNOTEN
+ROUTE ............. WASKISEN -> JITA
+SCHIFF ............ BOLLWERK TRANSIT
+KLASSE ............ OCCATOR
+STATUS ............ BEREIT
+LETZTE AKTE ....... 242 MIO ISK TRANSPORT ERFOLGREICH`,
+
+sicherheit:`> SICHERHEITSZENTRALE
+AKTUELLE LAGE ..... GRÜN BIS GELB
+LOCAL ............. BEOBACHTEN
+D-SCAN ............ BEREITHALTEN
+AKTE 0001 ......... PILOT Y. // NAME GEÄNDERT
+EMPFEHLUNG ........ KEINE PANIK. WEITERARBEITEN.`,
+
+archiv:`> ARCHIVZUGRIFF
+FIRMENARCHIV ...... chronik.html
+SCHIFFSREGISTER ... schiffsregister.html
+STATUS ............ FREIGEGEBEN
+
+Klicke hier: chronik.html`,
+
+hilfe:`> HILFE
+Befehle:
+status       Firmenstatus anzeigen
+flotte       Flottenübersicht anzeigen
+orca         Akte Bollwerk Prime VI
+drake        Akte Final Warning VII
+logistik     Transportstatus
+sicherheit   Sicherheitslage
+archiv       Link zum Firmenarchiv`
+};
+
+function runCmd(cmd){
+  cmd=cmd.toLowerCase().trim();
+  const out=document.getElementById("output");
+  if(data[cmd]){
+    out.textContent="> "+cmd+"\n\n"+data[cmd];
+  }else{
+    out.textContent="> "+cmd+"\n\nFEHLER: Befehl unbekannt. Tippe 'hilfe'.";
+  }
+}
+function sendInput(){
+  const input=document.getElementById("commandInput");
+  runCmd(input.value);
+  input.value="";
+}
+</script>
+</body>
+</html>
