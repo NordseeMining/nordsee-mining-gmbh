@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NMG NET - Nordsee Mining GmbH</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Consolas,monospace;background:#02070d;color:#dff7ff;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 15%,rgba(41,139,210,.25),transparent 30%),radial-gradient(circle at 85% 80%,rgba(255,180,60,.10),transparent 28%),linear-gradient(180deg,#06111d,#02070d);z-index:-2}
+body:after{content:"";position:fixed;inset:0;background-image:radial-gradient(1px 1px at 30px 80px,#fff,transparent),radial-gradient(1px 1px at 180px 160px,#8fd5ff,transparent),radial-gradient(2px 2px at 380px 240px,#8fd5ff,transparent);background-size:520px 320px;opacity:.15;z-index:-1}
+.menu{position:fixed;top:0;left:0;width:100%;background:rgba(3,13,24,.96);border-bottom:1px solid rgba(77,190,255,.35);z-index:20}
+.menu-inner{max-width:1250px;margin:auto;padding:14px 22px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-family:Arial,Helvetica,sans-serif;color:#7fd3ff;font-weight:bold;letter-spacing:1px}
+.menu a{font-family:Arial,Helvetica,sans-serif;color:#9bdcff;text-decoration:none;margin-left:18px;font-weight:bold;font-size:14px}
+.wrap{width:min(1250px,94%);margin:auto;padding:95px 0 50px}
+.boot{border:1px solid #1b7fc8;border-radius:22px;background:rgba(0,10,18,.92);box-shadow:0 0 55px rgba(0,160,255,.22);overflow:hidden}
+.top{padding:14px 18px;background:#071d2c;border-bottom:1px solid #1b7fc8;display:flex;justify-content:space-between;color:#8fd5ff}
+.main{display:grid;grid-template-columns:290px 1fr;min-height:690px}
+.sidebar{border-right:1px solid rgba(77,190,255,.28);padding:22px;background:rgba(4,18,30,.65)}
+.logo{width:105px;height:105px;border:3px solid #67cfff;border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;background:rgba(6,24,40,.85);box-shadow:0 0 25px rgba(80,200,255,.45);font-size:48px}
+.navbtn{display:block;width:100%;text-align:left;background:#071d2c;color:#9bdcff;border:1px solid #1b7fc8;border-radius:12px;padding:13px;margin:10px 0;cursor:pointer;font-family:Consolas,monospace;font-weight:bold}
+.navbtn:hover,.navbtn.active{background:#103655;color:white;box-shadow:0 0 18px rgba(80,200,255,.25)}
+.content{padding:26px}
+.statusline{color:#9dffbf;margin-bottom:16px}
+h1{font-family:Arial,Helvetica,sans-serif;font-size:clamp(34px,5vw,62px);color:#7fd3ff;text-shadow:0 0 24px rgba(100,200,255,.35);margin-bottom:8px}
+h2{font-family:Arial,Helvetica,sans-serif;color:#7fd3ff;margin:0 0 16px;font-size:30px}
+.sub{font-family:Arial,Helvetica,sans-serif;color:#c9e8f7;margin-bottom:22px;font-size:18px}
+.panel{display:none;animation:fade .25s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:rgba(12,35,55,.90);border:1px solid rgba(95,205,255,.28);border-radius:18px;padding:18px;min-height:135px}
+.card h3{font-family:Arial,Helvetica,sans-serif;color:white;margin-bottom:8px}.card p{color:#cbe8f8}
+.green{color:#62ff9c}.gold{color:#ffd36b}.red{color:#ff9b7a}.blue{color:#7fd3ff}
+.terminal{background:rgba(0,0,0,.32);border-left:4px solid #1b7fc8;border-radius:14px;padding:18px;color:#9dffbf;white-space:pre-wrap;min-height:170px;margin-top:16px}
+.shipgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.ship{border:1px solid rgba(95,205,255,.30);border-radius:18px;overflow:hidden;background:rgba(10,30,48,.92);cursor:pointer;transition:.25s}
+.ship:hover{transform:translateY(-3px);box-shadow:0 0 25px rgba(80,200,255,.24)}
+.shipimg{height:190px;background:#07111b center/cover no-repeat;position:relative}
+.shipimg:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.82))}
+.shipname{position:absolute;left:16px;right:16px;bottom:14px;z-index:2}
+.shipname h3{font-family:Arial,Helvetica,sans-serif;color:white;font-size:24px}.shipname span{color:#9bdcff}
+.shipbody{padding:16px;color:#cbe8f8}
+.map{position:relative;min-height:420px;border:1px solid rgba(95,205,255,.28);border-radius:18px;background:radial-gradient(circle at center,rgba(20,80,120,.18),rgba(0,0,0,.28));overflow:hidden}
+.star{position:absolute;width:22px;height:22px;border-radius:50%;background:#ffd36b;box-shadow:0 0 25px #ffd36b;cursor:pointer}
+.star span{position:absolute;left:28px;top:-4px;color:white;font-weight:bold;white-space:nowrap}
+.line{position:absolute;height:2px;background:rgba(127,211,255,.35);transform-origin:left center}
+.comm{background:rgba(10,35,55,.86);border:1px solid rgba(95,205,255,.25);border-radius:16px;padding:18px;margin-bottom:14px}
+.comm h3{font-family:Arial,Helvetica,sans-serif;color:#7fd3ff;margin-bottom:8px}
+input,textarea{width:100%;background:#02070d;border:1px solid #1b7fc8;color:#dff7ff;border-radius:10px;padding:12px;font-family:Consolas,monospace;margin:7px 0}
+textarea{min-height:110px}
+.send{background:linear-gradient(135deg,#b47b22,#ffd36b);color:#07111b;border:0;border-radius:10px;padding:13px 20px;font-weight:bold;cursor:pointer}
+.notice{margin-top:12px;color:#62ff9c;display:none}
+footer{text-align:center;color:#7f9fb5;padding:30px;font-family:Arial,Helvetica,sans-serif}
+@media(max-width:850px){.main{grid-template-columns:1fr}.sidebar{border-right:0;border-bottom:1px solid rgba(77,190,255,.28)}.menu-inner{flex-direction:column;gap:8px}.menu a{margin:0 8px}.wrap{padding-top:135px}}
+</style>
+</head>
+<body>
+<nav class="menu"><div class="menu-inner"><div class="brand">NORDSEE MINING GmbH</div><div><a href="index.html">Home</a><a href="chronik.html">Archiv</a><a href="schiffsregister.html">Schiffsregister</a><a href="nmg-net.html">NMG NET</a></div></div></nav>
+
+<div class="wrap">
+<div class="boot">
+<div class="top"><span>NMG NET v2.0</span><span>WASKISEN INDUSTRIAL NODE · ONLINE</span></div>
+<div class="main">
+<aside class="sidebar">
+<div class="logo">🛰️</div>
+<button class="navbtn active" onclick="openPanel('dashboard',this)">Dashboard</button>
+<button class="navbtn" onclick="openPanel('flotte',this)">Flottenkonsole</button>
+<button class="navbtn" onclick="openPanel('karte',this)">Sternenkarte</button>
+<button class="navbtn" onclick="openPanel('sicherheit',this)">Sicherheit</button>
+<button class="navbtn" onclick="openPanel('kommunikation',this)">Kommunikation</button>
+<button class="navbtn" onclick="openPanel('archiv',this)">Archivzugriff</button>
+</aside>
+
+<main class="content">
+<div class="statusline">> Verbindung hergestellt · Zugriff gewährt · Willkommen im NMG-Netzwerk █</div>
+
+<section id="dashboard" class="panel active">
+<h1>Nordsee Mining Control Center</h1>
+<p class="sub">Öffentlicher Firmenknoten der Nordsee Mining GmbH.</p>
+<div class="grid">
+<div class="card"><h3>Status</h3><p class="green">● Online</p></div>
+<div class="card"><h3>Heimatsystem</h3><p>Waskisen</p></div>
+<div class="card"><h3>Flotte</h3><p>Orca · Skiffs · Occator · Drake</p></div>
+<div class="card"><h3>Archiv</h3><p class="gold">Freigegeben</p></div>
+</div>
+<div class="terminal">BOOTSEQUENZ:
+NMG CORE ............. OK
+FIRMENARCHIV ......... ONLINE
+SCHIFFSREGISTER ...... ONLINE
+KOMMUNIKATION ........ EMPFANGSBEREIT
+SICHERHEIT ........... GRÜN BIS GELB</div>
+</section>
+
+<section id="flotte" class="panel">
+<h2>🚢 Flottenkonsole</h2>
+<p class="sub">Schiffsakten direkt aus dem Firmenregister.</p>
+<div class="shipgrid">
+<div class="ship" onclick="showShip('orca')"><div class="shipimg" style="background-image:url('bilder/orca-titel.png')"><div class="shipname"><h3>Bollwerk Prime VI</h3><span>Orca · Flottenkommando</span></div></div><div class="shipbody">Industrieabteilung · Status ONLINE</div></div>
+<div class="ship" onclick="showShip('drake')"><div class="shipimg" style="background-image:url('bilder/drake-titel.png')"><div class="shipname"><h3>Final Warning VII</h3><span>Drake · Patrouille</span></div></div><div class="shipbody">Sicherheitsabteilung · Status PATROUILLE</div></div>
+<div class="ship" onclick="showShip('occator')"><div class="shipimg" style="background-image:url('bilder/drake-patrouille.png')"><div class="shipname"><h3>Bollwerk Transit</h3><span>Occator · Logistik</span></div></div><div class="shipbody">Route Waskisen → Jita · Status BEREIT</div></div>
+</div>
+<div class="terminal" id="shipout">> Schiff anklicken, um Akte zu öffnen.</div>
+</section>
+
+<section id="karte" class="panel">
+<h2>🗺 Sternenkarte</h2>
+<p class="sub">Vereinfachter Firmenatlas der Nordsee Mining GmbH.</p>
+<div class="map">
+<div class="line" style="left:250px;top:160px;width:260px;transform:rotate(20deg)"></div>
+<div class="line" style="left:515px;top:255px;width:220px;transform:rotate(-25deg)"></div>
+<div class="star" style="left:220px;top:145px" onclick="mapInfo('Waskisen')"><span>Waskisen</span></div>
+<div class="star" style="left:500px;top:250px" onclick="mapInfo('Sobaseki')"><span>Sobaseki</span></div>
+<div class="star" style="left:730px;top:150px" onclick="mapInfo('Jita')"><span>Jita</span></div>
+</div>
+<div class="terminal" id="mapout">> System auswählen.</div>
+</section>
+
+<section id="sicherheit" class="panel">
+<h2>🛡 Sicherheitszentrale</h2>
+<div class="grid">
+<div class="card"><h3>Gefahrenlage</h3><p class="green">Grün bis Gelb</p></div>
+<div class="card"><h3>Patrouille</h3><p>Final Warning VII</p></div>
+<div class="card"><h3>Akten</h3><p class="red">Pilot Y. · beobachtet</p></div>
+</div>
+<div class="terminal">SCAN:
+LOCAL ............... BEOBACHTEN
+D-SCAN .............. BEREITHALTEN
+CONCORD ............. ONLINE
+EMPFEHLUNG .......... KEINE PANIK. WEITERARBEITEN.</div>
+</section>
+
+<section id="kommunikation" class="panel">
+<h2>📡 Kommunikationskonsole</h2>
+<p class="sub">Kein Gästebuch. Eine Übertragungskonsole.</p>
+<div class="comm"><h3>Transmission #0001</h3><p><span class="blue">Absender:</span> Unbekannter Capsuleer</p><p>o7 · Beeindruckende Firmenzentrale. Fly Safe.</p></div>
+<div class="comm"><h3>Transmission #0002</h3><p><span class="blue">Absender:</span> Highsec Miner</p><p>Die Akten sehen aus wie aus einer echten Caldari-Station.</p></div>
+<input id="sender" placeholder="Absender / Rufname">
+<input id="system" placeholder="System / Corporation">
+<textarea id="msg" placeholder="Übertragung eingeben"></textarea>
+<button class="send" onclick="sendTransmission()">Übertragung senden</button>
+<div class="notice" id="sent">Signal übertragen. Transmission im lokalen Archiv vorgemerkt.</div>
+</section>
+
+<section id="archiv" class="panel">
+<h2>📂 Archivzugriff</h2>
+<div class="grid">
+<div class="card"><h3>Firmenarchiv</h3><p>Chronik, Notizen, Sicherheitsakten</p><p><a class="blue" href="chronik.html">chronik.html</a></p></div>
+<div class="card"><h3>Schiffsregister</h3><p>Orca, Drake, Occator, Skiff-Flotte</p><p><a class="blue" href="schiffsregister.html">schiffsregister.html</a></p></div>
+<div class="card"><h3>Terminal</h3><p>Altes Befehlsterminal</p><p><a class="blue" href="terminal.html">terminal.html</a></p></div>
+</div>
+<div class="terminal">ARCHIVSTATUS:
+ÖFFENTLICHE AKTEN .... FREIGEGEBEN
+INTERNE DOKUMENTE .... GESCHWÄRZT
+BETRIEBSSICHERHEIT ... AKTIV</div>
+</section>
+
+</main>
+</div>
+</div>
+<footer>Nordsee Mining GmbH · NMG NET v2.0 · Waskisen Industrial Division · Fly Safe o7</footer>
+</div>
+
+<script>
+function openPanel(id,btn){
+ document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.navbtn').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+}
+function showShip(s){
+ const data={
+  orca:`SCHIFFSAKTE 0001
+NAME ............ BOLLWERK PRIME VI
+KLASSE .......... ORCA
+ROLLE ........... FLOTTENKOMMANDO
+STATUS .......... ONLINE
+NOTIZ ........... Das industrielle Herz der Nordsee Mining GmbH.`,
+  drake:`SCHIFFSAKTE 0002
+NAME ............ FINAL WARNING VII
+KLASSE .......... DRAKE
+ROLLE ........... GEFAHRENABWEHR
+STATUS .......... PATROUILLE
+NOTIZ ........... Bewaffnete Rückversicherung im Heimatsystem.`,
+  occator:`SCHIFFSAKTE 0004
+NAME ............ BOLLWERK TRANSIT
+KLASSE .......... OCCATOR
+ROLLE ........... JITA-LOGISTIK
+STATUS .......... BEREIT
+NOTIZ ........... Wenn sie abdockt, wird Erz zu Kapital.`
+ };
+ document.getElementById('shipout').textContent='> Zugriff gewährt\n\n'+data[s];
+}
+function mapInfo(s){
+ const info={
+  Waskisen:'HEIMATSYSTEM · 20 Belts · Firmenbasis der Nordsee Mining GmbH',
+  Sobaseki:'TRANSITKNOTEN · Route Richtung Jita',
+  Jita:'HANDELSZENTRUM · Verkauf, Einkauf, Risiko und Profit'
+ };
+ document.getElementById('mapout').textContent='> '+s.toUpperCase()+'\n'+info[s];
+}
+function sendTransmission(){
+ const sender=document.getElementById('sender').value || 'Unbekannter Capsuleer';
+ const system=document.getElementById('system').value || 'Signal unbekannt';
+ const msg=document.getElementById('msg').value || 'o7';
+ const box=document.createElement('div');
+ box.className='comm';
+ box.innerHTML='<h3>Transmission #NEU</h3><p><span class="blue">Absender:</span> '+sender+'</p><p><span class="blue">Signal:</span> '+system+'</p><p>'+msg+'</p>';
+ const panel=document.getElementById('kommunikation');
+ panel.insertBefore(box, panel.querySelector('input'));
+ document.getElementById('sent').style.display='block';
+}
+</script>
+</body>
+</html>
