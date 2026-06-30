@@ -3,29 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chronik - Nordsee Mining GmbH</title>
+<title>Firmenarchiv - Nordsee Mining GmbH</title>
+
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:#02070d;color:#e8f7ff;font-family:Arial,Helvetica,sans-serif;line-height:1.75}
 body::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(41,139,210,.22),transparent 30%),radial-gradient(circle at 80% 80%,rgba(0,255,180,.08),transparent 28%),linear-gradient(180deg,#06111d,#02070d);z-index:-2}
-body::after{content:"";position:fixed;inset:0;background-image:radial-gradient(1px 1px at 20px 30px,white,transparent),radial-gradient(1px 1px at 80px 100px,#8fd5ff,transparent),radial-gradient(1px 1px at 180px 70px,white,transparent),radial-gradient(2px 2px at 260px 200px,#8fd5ff,transparent),radial-gradient(1px 1px at 400px 120px,white,transparent);background-size:500px 300px;opacity:.18;z-index:-1}
+body::after{content:"";position:fixed;inset:0;background-image:radial-gradient(1px 1px at 20px 30px,white,transparent),radial-gradient(1px 1px at 80px 100px,#8fd5ff,transparent),radial-gradient(1px 1px at 180px 70px,white,transparent),radial-gradient(2px 2px at 260px 200px,#8fd5ff,transparent),radial-gradient(1px 1px at 400px 120px,white,transparent);background-size:500px 300px;opacity:.17;z-index:-1}
+
 .menu{position:fixed;top:0;left:0;width:100%;background:rgba(3,13,24,.95);border-bottom:1px solid rgba(77,190,255,.35);padding:14px 0;text-align:center;z-index:10;box-shadow:0 0 22px rgba(0,160,255,.16)}
 .menu a{color:#9bdcff;text-decoration:none;margin:0 18px;font-weight:bold}.menu a:hover{color:white;text-shadow:0 0 12px #6bd0ff}
-.wrapper{width:min(1000px,92%);margin:0 auto;padding:100px 0 60px}
-.header{text-align:center;margin-bottom:42px}.header h1{color:#7fd3ff;font-size:clamp(38px,6vw,64px);margin:0 0 12px;text-shadow:0 0 22px rgba(100,200,255,.25)}
-.subtitle{color:#bad7e8;font-size:20px}.archive-note{margin:26px auto 0;max-width:760px;background:rgba(6,20,34,.82);border:1px solid rgba(77,190,255,.22);border-radius:16px;padding:18px;color:#cbe8f8}
-.chapter{background:rgba(6,20,34,.88);border:1px solid rgba(77,190,255,.25);border-radius:18px;margin-bottom:20px;overflow:hidden;box-shadow:0 0 24px rgba(0,140,255,.08)}
-.chapter summary{cursor:pointer;padding:22px;font-size:22px;font-weight:bold;color:white;border-left:5px solid #3dbdff;list-style:none}.chapter summary::-webkit-details-marker{display:none}
+
+.wrapper{width:min(1050px,92%);margin:0 auto;padding:105px 0 60px}
+.archive-head{border:1px solid rgba(77,190,255,.45);border-radius:22px;background:rgba(6,20,34,.88);padding:32px;text-align:center;box-shadow:0 0 35px rgba(0,150,255,.15)}
+.archive-code{color:#8fd5ff;letter-spacing:3px;font-size:13px;text-transform:uppercase}
+h1{color:#7fd3ff;font-size:clamp(38px,6vw,66px);margin:10px 0;text-shadow:0 0 22px rgba(100,200,255,.25)}
+.subtitle{color:#bad7e8;font-size:20px}.stamp{display:inline-block;margin-top:18px;padding:8px 16px;border:1px solid #62ff9c;color:#62ff9c;border-radius:8px;font-weight:bold;letter-spacing:2px}
+
+.panel{margin:26px 0;padding:26px;border-radius:18px;background:rgba(6,20,34,.88);border:1px solid rgba(77,190,255,.25);box-shadow:0 0 24px rgba(0,140,255,.08)}
+.panel h2{color:#7fd3ff;margin-top:0;border-bottom:1px solid rgba(77,190,255,.25);padding-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:rgba(12,35,55,.92);border:1px solid rgba(95,205,255,.28);border-radius:16px;padding:18px}
+.card strong{color:white}.green{color:#62ff9c}.gold{color:#ffd36b}.red{color:#ffb86b}
+
+.chapter{background:rgba(6,20,34,.88);border:1px solid rgba(77,190,255,.25);border-radius:18px;margin-bottom:18px;overflow:hidden;box-shadow:0 0 24px rgba(0,140,255,.08)}
+.chapter summary{cursor:pointer;padding:22px;font-size:22px;font-weight:bold;color:white;border-left:5px solid #3dbdff;list-style:none}
+.chapter summary::-webkit-details-marker{display:none}
 .chapter summary span{display:block;font-size:14px;color:#8fd5ff;margin-top:6px;font-weight:normal}.chapter[open] summary{background:rgba(18,48,74,.95)}
 .text{padding:8px 28px 28px;font-size:18px;color:#d6eaf5}.text p{margin:0 0 18px}.text strong{color:white}
+
+.memo,.note-box,.security-file{margin:22px 0;padding:22px;border-radius:16px}
+.memo{background:rgba(255,211,107,.08);border:1px solid rgba(255,211,107,.32)}
+.note-box{background:rgba(77,190,255,.08);border:1px solid rgba(77,190,255,.32)}
+.security-file{background:rgba(255,120,80,.08);border:1px solid rgba(255,120,80,.32)}
+.memo h3,.note-box h3,.security-file h3{margin-top:0;color:white}
+.fileline{font-family:Consolas,monospace;color:#cbe8f8}
 sup a{color:#9bdcff;text-decoration:none;font-weight:bold}sup a:hover{color:white}
-.redaktion{margin-top:32px;padding:24px;border-radius:18px;background:rgba(6,20,34,.88);border:1px solid rgba(77,190,255,.25);box-shadow:0 0 24px rgba(0,140,255,.08)}
-.redaktion h2{color:#7fd3ff;margin-top:0}.redaktion p{color:#c8dfed;font-size:17px}
+.redaktion{margin-top:32px;padding:24px;border-radius:18px;background:rgba(6,20,34,.88);border:1px solid rgba(77,190,255,.25)}
+.redaktion h2{color:#7fd3ff;margin-top:0}.redaktion p{color:#c8dfed}
 footer{text-align:center;color:#7f9fb5;padding:40px}
-@media(max-width:700px){.menu a{display:inline-block;margin:5px 9px;font-size:14px}.wrapper{padding-top:130px}.text{font-size:16px;padding:8px 20px 24px}.chapter summary{font-size:19px}}
+@media(max-width:700px){.menu a{display:inline-block;margin:5px 9px;font-size:14px}.wrapper{padding-top:135px}.text{font-size:16px;padding:8px 20px 24px}.chapter summary{font-size:19px}}
 </style>
 </head>
+
 <body>
 <nav class="menu">
 <a href="index.html">Home</a>
@@ -33,12 +54,25 @@ footer{text-align:center;color:#7f9fb5;padding:40px}
 <a href="index.html#flotte">Flotte</a>
 <a href="index.html#galerie">Galerie</a>
 </nav>
+
 <div class="wrapper">
-<div class="header">
-<h1>Chronik der Nordsee Mining GmbH</h1>
-<div class="subtitle">Aus den Aufzeichnungen eines Highsec-Miners</div>
-<div class="archive-note">Firmenarchiv Waskisen · Aktenstand: Aufbauphase · Herausgegeben von der Redaktion der Nordsee Mining GmbH</div>
+
+<header class="archive-head">
+<div class="archive-code">NMG-ARCHIV-000001 · Öffentliche Akten</div>
+<h1>Firmenarchiv der Nordsee Mining GmbH</h1>
+<div class="subtitle">Chronik · Notizen · Sicherheitsakten · Interne Dokumente</div>
+<div class="stamp">FREIGEGEBEN</div>
+</header>
+
+<section class="panel">
+<h2>📡 Archivstatus</h2>
+<div class="grid">
+<div class="card"><strong>Heimatsystem</strong><br>Waskisen</div>
+<div class="card"><strong>Freigabestufe</strong><br><span class="green">Öffentliche Akten</span></div>
+<div class="card"><strong>Archivtyp</strong><br>Highsec-Mining-Chronik</div>
+<div class="card"><strong>Leitsatz</strong><br><span class="gold">Aus Erz werden Geschichten</span></div>
 </div>
+</section>
 
 <details class="chapter" open>
 <summary>Prolog – Die Rückkehr nach New Eden<span>Der alte Pilot kehrt zurück.</span></summary>
@@ -50,33 +84,39 @@ footer{text-align:center;color:#7f9fb5;padding:40px}
 <p>Dann kam eins zum anderen.</p>
 <p>Aus einem einfachen Mining-Schiff wurde eine kleine Flotte. Aus einer Idee wurde ein Plan. Aus einem Plan wurde eine Corporation.</p>
 <p>Die <strong>Nordsee Mining GmbH</strong> war geboren.</p>
-<p>Heute steht sie in Waskisen, mit eigener Orca, vier Skiffs, einer Occator für die Jita-Transporte und einem Firmenhangar, der endlich Ordnung in das Chaos bringt.</p>
-<p>Vielleicht ist Highsec-Mining für manche langweilig.</p>
-<p>Für mich ist es der Anfang einer Geschichte.</p>
+<p>Vielleicht ist Highsec-Mining für manche langweilig. Für mich ist es der Anfang einer Geschichte.</p>
+
+<div class="note-box">
+<h3>📝 Persönliche Notiz des Geschäftsführers</h3>
+<p>Ich wollte eigentlich nur wieder einsteigen. Ein paar Runden fliegen, ein bisschen minern, schauen, ob New Eden noch dieses alte Gefühl hat.</p>
+<p>Es hatte es.</p>
+<p>Und plötzlich war da nicht mehr nur ein Schiff. Da war eine Idee.</p>
+<p><strong>– Aus dem persönlichen Logbuch des Geschäftsführers</strong></p>
+</div>
 </div>
 </details>
 
 <details class="chapter">
 <summary>Kapitel 1 – Der Ruf von Waskisen<span>Zwanzig Belts. Ein Heimatsystem. Ein Anfang.</span></summary>
 <div class="text">
-<p>Es gibt Systeme in New Eden, die man nur durchquert.</p>
-<p>Und es gibt Systeme, in denen man bleibt.</p>
-<p>Waskisen war zuerst nur ein Name auf der Karte. Ein Punkt im Highsec. Sicherheitsstufe 0.7. The Citadel. Nicht weit genug weg, um vergessen zu werden, aber weit genug entfernt vom Lärm Jitas, um atmen zu können.</p>
+<p>Es gibt Systeme in New Eden, die man nur durchquert. Und es gibt Systeme, in denen man bleibt.</p>
+<p>Waskisen war zuerst nur ein Name auf der Karte. Ein Punkt im Highsec. Sicherheitsstufe 0.7. The Citadel.</p>
 <p><strong>Zwanzig Asteroidengürtel.</strong></p>
 <p>Für andere war das vielleicht nur eine Zahl. Für mich war es eine Einladung.</p>
-<p>Ich flog die ersten Runden noch vorsichtig. Local im Blick. D-Scan bereit. Die Übersicht voller Namen, die ich nicht kannte. Jeder Pilot konnte harmlos sein. Oder der Anfang eines schlechten Tages.</p>
-<p>Aber Waskisen blieb ruhig.</p>
-<p>Ruhig genug, um Pläne zu machen.</p>
+<p>Ich flog die ersten Runden noch vorsichtig. Local im Blick. D-Scan bereit. Die Übersicht voller Namen, die ich nicht kannte.</p>
+<p>Aber Waskisen blieb ruhig. Ruhig genug, um Pläne zu machen.</p>
 <p>Erst kam ein Schiff. Dann ein zweites. Dann die Skiffs. Dann die Orca.</p>
 <p><strong>Bollwerk Prime VI.</strong></p>
-<p>Als sie zum ersten Mal im Belt stand, war klar: Das hier war kein Test mehr.</p>
-<p>Das war der Anfang eines Betriebs.</p>
-<p>Die Skiffs fraßen sich durch das Gestein. Mining-Drohnen schwärmten aus wie kleine Arbeiter im kalten Licht der Sterne. Der Erzraum füllte sich. Langsam, stetig, ehrlich.</p>
-<p>Kein Ruhm. Keine Schlacht. Kein Heldengesang. Nur Arbeit.</p>
-<p>Aber genau darin lag etwas Eigenes.</p>
+<p>Als sie zum ersten Mal im Belt stand, war klar: Das hier war kein Test mehr. Das war der Anfang eines Betriebs.</p>
 <p>Waskisen wurde nicht durch Waffen erobert. Es wurde durch Geduld in Besitz genommen.</p>
-<p>Ein Heimathafen. Eine Route. Eine Firma.</p>
-<p>Die <strong>Nordsee Mining GmbH</strong> hatte ihren Platz gefunden.</p>
+
+<div class="memo">
+<h3>📄 Internes Memorandum</h3>
+<p class="fileline">Betreff: Standortanalyse Waskisen</p>
+<p>Nach Prüfung der örtlichen Gegebenheiten wird Waskisen als Hauptstandort empfohlen.</p>
+<p>Begründung: 20 Asteroidengürtel, gute Highsec-Lage, kurze Logistikwege und ausreichender Abstand zum Lärm von Jita.</p>
+<p><strong>Beschluss:</strong> Standort angenommen.</p>
+</div>
 </div>
 </details>
 
@@ -87,17 +127,20 @@ footer{text-align:center;color:#7f9fb5;padding:40px}
 <p>Und es gibt Schiffe, um die herum man alles andere aufbaut.</p>
 <p>Für die Nordsee Mining GmbH wurde dieses Schiff die <strong>Bollwerk Prime VI</strong>.</p>
 <p>Eine Orca.</p>
-<p>Kein Kriegsschiff. Kein glänzender Jäger. Kein Symbol für Ruhm oder Eroberung.</p>
+<p>Kein Kriegsschiff. Kein Symbol für Ruhm oder Eroberung.</p>
 <p>Aber für einen Miner ist eine Orca etwas anderes.</p>
 <p>Sie ist Zentrum. Lager. Kommando. Sicherheit. Zuhause im Belt.</p>
-<p>Als die Bollwerk Prime VI zum ersten Mal in Waskisen zwischen den Asteroiden stand, änderte sich das Gefühl im ganzen Betrieb.</p>
-<p>Vorher waren es einzelne Schiffe, einzelne Flüge, einzelne Ladungen.</p>
-<p>Jetzt war es eine Flotte.</p>
-<p>Die Skiffs arbeiteten um sie herum. Drohnen schwärmten aus. Erz verschwand aus dem Belt und wanderte in die Firmenlogistik.</p>
 <p>Aus „ich mine ein bisschen“ wurde:</p>
 <p><strong>Wir betreiben hier etwas.</strong></p>
-<p>Nicht laut. Nicht heldenhaft. Aber solide.</p>
-<p>Wie Stahl. Wie Erz. Wie ein Bollwerk.</p>
+<p>Nicht laut. Nicht heldenhaft. Aber solide. Wie Stahl. Wie Erz. Wie ein Bollwerk.</p>
+
+<div class="note-box">
+<h3>📝 Persönliche Notiz des Geschäftsführers</h3>
+<p>Als die Orca das erste Mal zwischen den Asteroiden stand, war da dieser eine Gedanke:</p>
+<p>Das ist keine Übergangslösung mehr.</p>
+<p>Das ist unsere Mitte.</p>
+<p><strong>– Aus dem persönlichen Logbuch des Geschäftsführers</strong></p>
+</div>
 </div>
 </details>
 
@@ -105,72 +148,64 @@ footer{text-align:center;color:#7f9fb5;padding:40px}
 <summary>Kapitel 3 – Die schwarze Einfahrt nach Jita<span>242 Millionen ISK und ein kurzer Moment völliger Stille.</span></summary>
 <div class="text">
 <p>Jede Firma braucht irgendwann ihren ersten großen Transport.</p>
-<p>Nicht den kleinen Flug mit ein paar Resten im Frachtraum. Nicht die harmlose Runde zum nächsten Markt.</p>
-<p>Sondern diesen einen Flug, bei dem man vor dem Abdocken noch einmal auf die Ladung schaut und denkt:</p>
+<p>Diesen einen Flug, bei dem man vor dem Abdocken auf die Ladung schaut und denkt:</p>
 <p><strong>„Okay. Das sollte jetzt besser gutgehen.“</strong></p>
-<p>Für die Nordsee Mining GmbH war dieser Moment gekommen.</p>
-<p>Die Belts von Waskisen hatten geliefert. Die Skiffs hatten gearbeitet. Die Orca hatte gehalten. Die Drohnen hatten geschuftet.</p>
-<p>Erz war zu Bestand geworden. Bestand wurde zu Ware. Ware musste nach Jita.</p>
+<p>Die Belts von Waskisen hatten geliefert. Erz wurde zu Bestand. Bestand wurde zu Ware. Ware musste nach Jita.</p>
 <p>Also wurde die <strong>Bollwerk Transit</strong> vorbereitet.</p>
-<p>Eine Occator.</p>
-<p>Laderaum. Panzerung. Nerven.</p>
+<p>Eine Occator. Laderaum. Panzerung. Nerven.</p>
 <p><strong>242 Millionen ISK.</strong></p>
-<p>Dann ging es los.</p>
-<p>Sprung für Sprung entfernte sich die Bollwerk Transit von Waskisen. Systeme flogen vorbei. Gates öffneten sich. Gates schlossen sich. Local wechselte. Die Übersicht blieb ruhig.</p>
-<p>Dann kam Jita.</p>
-<p>Der Lärm von New Eden in einem einzigen System.</p>
-<p>Die Bollwerk Transit nahm Kurs auf die Station.</p>
+<p>Dann kam Jita. Die Bollwerk Transit nahm Kurs auf die Station.</p>
 <p>Andocken.</p>
 <p>Und dann wurde der Bildschirm schwarz.</p>
 <p>Kein Bild. Keine Bewegung. Nur Stille.</p>
 <p>Diese Sekunden fühlten sich länger an als der ganze Flug.</p>
 <p>Dann war sie da. Die Station. Sicher angedockt.</p>
-<p>Die Ware wurde verkauft. Der Markt nahm, was Waskisen geliefert hatte.</p>
-<p>Und die Kasse klingelte.</p>
+<p>Die Ware wurde verkauft. Und die Kasse klingelte.</p>
 <p><strong>Erz aus dem Belt.<br>Transport nach Jita.<br>ISK zurück in die Firma.</strong></p>
-<p>Die Nordsee Mining GmbH hatte ihren ersten großen Kreislauf geschlossen.</p>
-<p>Denn eine Miningfirma lebt nicht von einem einzigen Erfolg. Sie lebt davon, wieder abzudocken.</p>
+
+<div class="memo">
+<h3>📡 Logistikbericht</h3>
+<p class="fileline">Transportkennung: NMG-JITA-0001</p>
+<p>Frachtwert: 242.000.000 ISK</p>
+<p>Status: Erfolgreich angedockt</p>
+<p>Bemerkung: Kurzzeitiger schwarzer Bildschirm während des Andockvorgangs. Geschäftsführung blieb äußerlich ruhig.</p>
+</div>
 </div>
 </details>
 
 <details class="chapter">
 <summary>Kapitel 4 – Der gelbe Schädel im Local<span>Pilot Y. betritt die Akten der Sicherheitsabteilung.</span></summary>
 <div class="text">
-<p>Es gibt Geräusche, die hört man in New Eden nicht wirklich.</p>
-<p>Und trotzdem kennt sie jeder.</p>
+<p>Es gibt Geräusche, die hört man in New Eden nicht wirklich. Und trotzdem kennt sie jeder.</p>
 <p>Das stille Aufleuchten eines neuen Namens im Local. Das kurze Zucken im Blick. Der automatische Griff zum D-Scan.</p>
 <p>In Waskisen hatte dieser Moment irgendwann einen Namen.</p>
 <p><strong>Pilot Y.<sup><a href="#fn1">[1]</a></sup></strong></p>
-<p>Er kam nicht mit einer Flotte.</p>
-<p>Er schrieb keine Drohung.</p>
-<p>Er tat zunächst nichts, was man eindeutig greifen konnte.</p>
+<p>Er kam nicht mit einer Flotte. Er schrieb keine Drohung. Er tat zunächst nichts, was man eindeutig greifen konnte.</p>
 <p>Aber er war da.</p>
 <p>Gelb markiert. Mit Schädel.</p>
-<p>Und damit automatisch interessant für die Sicherheitsabteilung der Nordsee Mining GmbH.</p>
-<p>Die Skiffs arbeiteten weiter. Die Drohnen flogen weiter. Die Orca stand ruhig im Belt, als wäre nichts geschehen.</p>
-<p>Doch im Hintergrund änderte sich etwas.</p>
 <p>Aus Mining wurde Wachsamkeit. Aus Routine wurde Beobachtung. Aus einem einfachen Namen im Local wurde eine Akte.</p>
-<p>Niemand wusste genau, was Pilot Y. wollte.</p>
-<p>Vielleicht war er nur auf der Durchreise. Vielleicht suchte er ein Ziel. Vielleicht war er harmlos. Vielleicht auch nicht.</p>
-<p>In New Eden sind das oft genau die gefährlichsten Sätze.</p>
-<p>Also wurde weiter abgebaut, aber nicht mehr ganz so entspannt wie vorher.</p>
-<p>Ein Auge auf dem Erz. Ein Auge auf Local. Ein Auge auf dem Bauchgefühl.</p>
 <p>Die Nordsee Mining GmbH hatte gelernt:</p>
-<p>Waskisen war ein gutes System. Ein ruhiges System. Ein System mit zwanzig Belts, kurzen Wegen und ehrlicher Arbeit.</p>
-<p>Aber es war kein Märchenland.</p>
-<p>Denn irgendwo zwischen Asteroiden, Drohnen und Frachtraum blinkte ein gelber Schädel.</p>
-<p>Und seit diesem Tag wusste jeder in der Firma:</p>
 <p><strong>Erz kann man abbauen.</strong></p>
 <p><strong>Risiko muss man beobachten.</strong></p>
+
+<div class="security-file">
+<h3>🚨 Sicherheitsakte 0001</h3>
+<p class="fileline">Codename: Pilot Y.</p>
+<p class="fileline">Gefährdungsstufe: <span class="red">GELB</span></p>
+<p class="fileline">Status: Beobachtung</p>
+<p>Bemerkung: Betritt regelmäßig das Heimatsystem. Bisher keine direkten feindlichen Handlungen gegen Betriebsmittel der Nordsee Mining GmbH.</p>
+<p>Empfehlung: Local beobachten. D-Scan bereithalten. Keine Panik.</p>
+</div>
 </div>
 </details>
 
 <section class="redaktion" id="fussnoten">
 <h2>Fußnoten der Redaktion</h2>
 <p id="fn1"><strong>[1]</strong> Name von der Redaktion geändert. Die Sicherheitsabteilung der Nordsee Mining GmbH führt diese Akte intern unter „Pilot Y.“.</p>
+<p>Jede Geschichte dieser Chronik basiert auf tatsächlichen Ereignissen in New Eden. Namen und einzelne Details wurden aus Gründen der Betriebssicherheit geändert.</p>
 </section>
 
 </div>
-<footer>Nordsee Mining GmbH · Waskisen Industrial Division · Fly Safe o7</footer>
+<footer>Nordsee Mining GmbH · Waskisen Industrial Division · Dokument elektronisch erstellt. Eine Unterschrift ist nicht erforderlich. · Fly Safe o7</footer>
 </body>
 </html>
