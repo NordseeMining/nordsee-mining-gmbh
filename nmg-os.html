@@ -1,1 +1,104 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NMG OS Genesis</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{height:100vh;overflow:hidden;background:#02070d;color:#dff7ff;font-family:Arial,Helvetica,sans-serif}
+body:before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(2,7,13,.35),rgba(2,7,13,.85)),url("bilder/drake-titel.png") center/cover no-repeat;z-index:-3}
+body:after{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(41,139,210,.25),transparent 30%),radial-gradient(circle at 80% 80%,rgba(255,211,107,.10),transparent 30%);z-index:-2}
+.scan{position:fixed;inset:0;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,rgba(127,211,255,.05) 50%,transparent 100%);background-size:100% 8px;z-index:999;opacity:.35}
+.boot{position:fixed;inset:0;background:#02070d;z-index:2000;display:flex;align-items:center;justify-content:center;animation:hideBoot .8s ease forwards;animation-delay:3.3s}
+.bootbox{width:min(760px,92%);border:1px solid #1b7fc8;border-radius:18px;background:rgba(0,10,18,.96);box-shadow:0 0 50px rgba(0,160,255,.28);padding:28px;font-family:Consolas,monospace;color:#9dffbf}
+.bootbox h1{font-size:28px;color:#7fd3ff;margin-bottom:18px}
+.bootline{opacity:0;margin:8px 0;animation:line .25s forwards}
+.bootline:nth-child(2){animation-delay:.2s}.bootline:nth-child(3){animation-delay:.7s}.bootline:nth-child(4){animation-delay:1.2s}.bootline:nth-child(5){animation-delay:1.7s}.bootline:nth-child(6){animation-delay:2.2s}
+.bar{height:12px;border:1px solid #1b7fc8;border-radius:20px;overflow:hidden;margin-top:16px}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#1d7dd8,#62ff9c);animation:load 2.7s forwards}
+@keyframes line{to{opacity:1}}@keyframes load{to{width:100%}}@keyframes hideBoot{to{opacity:0;visibility:hidden}}
+.desktop{height:100vh;padding:28px;padding-top:42px;position:relative}
+.topbar{position:fixed;top:0;left:0;right:0;height:34px;background:rgba(3,13,24,.88);border-bottom:1px solid rgba(77,190,255,.35);display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#9bdcff;font-family:Consolas,monospace;z-index:50}
+.icons{display:grid;grid-template-columns:repeat(2,110px);gap:18px;width:250px;margin-top:30px}
+.icon{height:105px;border:1px solid rgba(95,205,255,.35);border-radius:16px;background:rgba(4,18,30,.72);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;box-shadow:0 0 20px rgba(0,140,255,.08);transition:.2s}
+.icon:hover{transform:translateY(-3px);box-shadow:0 0 25px rgba(80,200,255,.28);background:rgba(12,35,55,.86)}
+.icon .sym{font-size:34px}.icon span{font-size:13px;color:#dff7ff;font-weight:bold;margin-top:6px}
+.window{position:absolute;left:320px;top:95px;width:min(760px,58vw);min-height:430px;border:1px solid rgba(95,205,255,.45);border-radius:16px;background:rgba(4,15,27,.94);box-shadow:0 0 40px rgba(0,160,255,.22);display:none;overflow:hidden}
+.window.active{display:block;animation:pop .18s ease}
+@keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+.title{height:40px;background:#071d2c;border-bottom:1px solid #1b7fc8;display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:#9bdcff;font-family:Consolas,monospace}
+.close{background:#401820;color:#ffb0a0;border:1px solid #884050;border-radius:8px;padding:4px 10px;cursor:pointer}
+.content{padding:22px;color:#d6eaf5;max-height:calc(100vh - 190px);overflow:auto}
+.content h2{color:#7fd3ff;margin-bottom:12px;font-size:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:16px}
+.card{background:rgba(12,35,55,.9);border:1px solid rgba(95,205,255,.25);border-radius:14px;padding:16px}
+.card h3{color:white;margin-bottom:8px}.green{color:#62ff9c}.gold{color:#ffd36b}.red{color:#ff9b7a}
+.terminal{font-family:Consolas,monospace;background:rgba(0,0,0,.32);border-left:4px solid #1b7fc8;border-radius:12px;padding:16px;color:#9dffbf;white-space:pre-wrap;margin-top:14px}
+.taskbar{position:fixed;left:0;right:0;bottom:0;height:46px;background:rgba(3,13,24,.92);border-top:1px solid rgba(77,190,255,.35);display:flex;align-items:center;gap:10px;padding:0 14px;z-index:60}
+.start{background:linear-gradient(135deg,#1d7dd8,#36c0ff);color:white;border:0;border-radius:10px;padding:10px 18px;font-weight:bold}
+.task{background:#071d2c;color:#9bdcff;border:1px solid #1b7fc8;border-radius:10px;padding:8px 14px;cursor:pointer}
+.clock{margin-left:auto;color:#9bdcff;font-family:Consolas,monospace}
+@media(max-width:850px){body{overflow:auto}.desktop{height:auto;min-height:100vh;padding-bottom:70px}.icons{grid-template-columns:repeat(3,95px);width:auto}.window{position:relative;left:auto;top:auto;width:100%;margin-top:22px}.taskbar{position:fixed}.icon{height:92px}}
+</style>
+</head>
+<body>
+<div class="scan"></div>
+<div class="boot"><div class="bootbox"><h1>NMG OS Genesis</h1><div class="bootline">Initializing Waskisen relay ........ OK</div><div class="bootline">Loading public archive ........ OK</div><div class="bootline">Mounting ship register ........ OK</div><div class="bootline">Redacting operational data ........ OK</div><div class="bootline">Welcome Capsuleer.</div><div class="bar"><span></span></div></div></div>
+<div class="topbar"><div>NMG OS Genesis · Public Node</div><div>Waskisen Industrial Division</div></div>
+<div class="desktop">
+<div class="icons">
+<div class="icon" onclick="openWin('terminal')"><div class="sym">🛰️</div><span>Terminal</span></div>
+<div class="icon" onclick="openWin('fleet')"><div class="sym">🚢</div><span>Flotte</span></div>
+<div class="icon" onclick="openWin('archive')"><div class="sym">📂</div><span>Archiv</span></div>
+<div class="icon" onclick="openWin('map')"><div class="sym">🗺️</div><span>Karte</span></div>
+<div class="icon" onclick="openWin('security')"><div class="sym">🛡️</div><span>Sicherheit</span></div>
+<div class="icon" onclick="openWin('comms')"><div class="sym">📡</div><span>Comms</span></div>
+</div>
+<div class="window active" id="welcome"><div class="title"><span>Willkommen</span><button class="close" onclick="closeWin('welcome')">X</button></div><div class="content"><h2>Nordsee Mining GmbH</h2><p>Willkommen im öffentlichen Firmencomputer der Nordsee Mining GmbH.</p><p>Dieses System zeigt freigegebene Akten, historische Meldungen und archivierte Schiffsdaten. Keine Live-Daten. Keine echten Routen. Keine persönlichen Informationen.</p><div class="terminal">SYSTEMSTATUS:
+FIRMENARCHIV ...... ONLINE
+SCHIFFSREGISTER ... ONLINE
+NMG NET ........... ONLINE
+FREIGABESTUFE ..... ÖFFENTLICH
+</div></div></div>
+<div class="window" id="terminal"><div class="title"><span>Terminal</span><button class="close" onclick="closeWin('terminal')">X</button></div><div class="content"><h2>NMG Terminal</h2><div class="terminal">> status
+
+SYSTEM ............ WASKISEN
+SICHERHEIT ........ GRÜN BIS GELB
+INDUSTRIE ......... AKTIV
+ARCHIV ............ FREIGEGEBEN
+
+> Hinweis:
+Operative Details wurden durch die Archivabteilung geschwärzt.</div></div></div>
+<div class="window" id="fleet"><div class="title"><span>Flottenkonsole</span><button class="close" onclick="closeWin('fleet')">X</button></div><div class="content"><h2>Flottenkonsole</h2><div class="grid"><div class="card"><h3>🐋 Bollwerk Prime VI</h3><p>Orca · <span class="green">Online</span></p></div><div class="card"><h3>🛡️ Final Warning VII</h3><p>Drake · <span class="green">Patrouille</span></p></div><div class="card"><h3>🚛 Bollwerk Transit</h3><p>Occator · <span class="gold">Logistik</span></p></div><div class="card"><h3>⛏️ Skiff-Flotte</h3><p>Mining Wing · <span class="green">Aktiv</span></p></div></div></div></div>
+<div class="window" id="archive"><div class="title"><span>Firmenarchiv</span><button class="close" onclick="closeWin('archive')">X</button></div><div class="content"><h2>Firmenarchiv</h2><p>Freigegebene Akten der Nordsee Mining GmbH.</p><div class="grid"><div class="card"><h3>Chronik</h3><p><a style="color:#7fd3ff" href="chronik.html">chronik.html</a></p></div><div class="card"><h3>Schiffsregister</h3><p><a style="color:#7fd3ff" href="schiffsregister.html">schiffsregister.html</a></p></div><div class="card"><h3>NMG NET</h3><p><a style="color:#7fd3ff" href="nmg-net.html">nmg-net.html</a></p></div></div></div></div>
+<div class="window" id="map"><div class="title"><span>Sternenkarte</span><button class="close" onclick="closeWin('map')">X</button></div><div class="content"><h2>Sternenkarte</h2><div class="terminal">          JITA
+           ●
+           |
+        SOBASEKI
+           ●
+           |
+        WASKISEN
+           ●  Firmenbasis
+
+Hinweis: Karte ist vereinfacht. Operative Routen sind nicht öffentlich.</div></div></div>
+<div class="window" id="security"><div class="title"><span>Sicherheitszentrale</span><button class="close" onclick="closeWin('security')">X</button></div><div class="content"><h2>Sicherheitszentrale</h2><div class="terminal">AKTUELLE ARCHIV-EINSTUFUNG:
+GRÜN BIS GELB
+
+LOCAL ............. BEOBACHTEN
+D-SCAN ............ BEREITHALTEN
+AKTE 0001 ......... PILOT Y. // NAME GEÄNDERT
+EMPFEHLUNG ........ KEINE PANIK. WEITERARBEITEN.</div></div></div>
+<div class="window" id="comms"><div class="title"><span>Kommunikation</span><button class="close" onclick="closeWin('comms')">X</button></div><div class="content"><h2>Kommunikationskonsole</h2><p>Keine gewöhnliche Gästebuch-Funktion. Besucher senden eine Transmission an das Firmenarchiv.</p><div class="terminal">TRANSMISSION #0001
+Absender: Unbekannter Capsuleer
+Nachricht: Fly Safe o7 · Beeindruckende Firmenzentrale.</div></div></div>
+</div>
+<div class="taskbar"><button class="start" onclick="openWin('welcome')">NMG OS</button><button class="task" onclick="openWin('terminal')">Terminal</button><button class="task" onclick="openWin('fleet')">Flotte</button><button class="task" onclick="openWin('archive')">Archiv</button><div class="clock" id="clock">--:--</div></div>
+<script>
+function openWin(id){document.getElementById(id).classList.add('active')}
+function closeWin(id){document.getElementById(id).classList.remove('active')}
+function tick(){const d=new Date();document.getElementById('clock').textContent=d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}
+tick();setInterval(tick,1000)
+</script>
+</body>
+</html>
