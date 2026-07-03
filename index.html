@@ -8,69 +8,97 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:Arial,Helvetica,sans-serif;background:#02070d;color:#e8f7ff;line-height:1.6;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(41,139,210,.22),transparent 30%),radial-gradient(circle at 80% 10%,rgba(0,255,180,.08),transparent 25%),linear-gradient(180deg,#06111d,#02070d);z-index:-2}
-body:after{content:"";position:fixed;inset:0;background-image:radial-gradient(1px 1px at 20px 30px,white,transparent),radial-gradient(1px 1px at 80px 100px,#8fd5ff,transparent),radial-gradient(2px 2px at 260px 200px,#8fd5ff,transparent);background-size:500px 300px;opacity:.18;z-index:-1}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(41,139,210,.22),transparent 30%),radial-gradient(circle at 80% 10%,rgba(0,255,180,.08),transparent 25%),linear-gradient(180deg,#06111d,#02070d);z-index:-3}
+body:after{content:"";position:fixed;inset:0;background-image:radial-gradient(1px 1px at 20px 30px,white,transparent),radial-gradient(1px 1px at 80px 100px,#8fd5ff,transparent),radial-gradient(2px 2px at 260px 200px,#8fd5ff,transparent);background-size:500px 300px;opacity:.18;z-index:-2}
+.scan{position:fixed;inset:0;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,rgba(127,211,255,.05) 50%,transparent 100%);background-size:100% 8px;opacity:.32;z-index:4000;mix-blend-mode:screen}
+
+.bootscreen{position:fixed;inset:0;background:#02070d;z-index:5000;display:flex;align-items:center;justify-content:center;animation:bootHide .9s ease forwards;animation-delay:3.2s}
+.bootbox{width:min(760px,92%);border:1px solid #1b7fc8;border-radius:18px;background:rgba(0,10,18,.96);box-shadow:0 0 45px rgba(0,160,255,.3);padding:28px;font-family:Consolas,monospace;color:#9dffbf}
+.bootbox h2{color:#7fd3ff;margin-bottom:18px;font-family:Consolas,monospace}
+.bootline{opacity:0;animation:typeIn .35s forwards;margin:8px 0}
+.bootline:nth-child(2){animation-delay:.2s}.bootline:nth-child(3){animation-delay:.7s}.bootline:nth-child(4){animation-delay:1.2s}.bootline:nth-child(5){animation-delay:1.7s}.bootline:nth-child(6){animation-delay:2.2s}
+.bar{height:12px;border:1px solid #1b7fc8;border-radius:20px;overflow:hidden;margin-top:16px}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#1d7dd8,#62ff9c);animation:load 2.7s forwards}
+@keyframes typeIn{to{opacity:1}}@keyframes load{to{width:100%}}@keyframes bootHide{to{opacity:0;visibility:hidden}}
+
 .menu{position:fixed;top:0;left:0;width:100%;background:rgba(3,13,24,.94);border-bottom:1px solid rgba(77,190,255,.35);z-index:1000;box-shadow:0 0 25px rgba(0,160,255,.18)}
 .menu-inner{max-width:1250px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:14px 22px}
 .brand{color:#7fd3ff;font-weight:bold;letter-spacing:1px}.links a{color:#9bdcff;text-decoration:none;margin-left:18px;font-weight:bold;font-size:14px}.links a:hover{color:white}
 .wrapper{width:min(1200px,92%);margin:auto;padding-top:100px}
 .hero{min-height:86vh;display:grid;place-items:center}
-.terminal{width:100%;border:1px solid rgba(77,190,255,.55);border-radius:24px;background:linear-gradient(rgba(2,7,13,.72),rgba(2,7,13,.88)),url("bilder/drake-titel.png") center/cover no-repeat;box-shadow:0 0 55px rgba(0,160,255,.26),inset 0 0 60px rgba(0,0,0,.65);overflow:hidden}
+.terminal{width:100%;border:1px solid rgba(77,190,255,.55);border-radius:24px;background:linear-gradient(rgba(2,7,13,.68),rgba(2,7,13,.88)),url("bilder/drake-titel.png") center/cover no-repeat;box-shadow:0 0 55px rgba(0,160,255,.26),inset 0 0 60px rgba(0,0,0,.65);overflow:hidden}
 .terminal-top{background:rgba(8,30,48,.86);border-bottom:1px solid rgba(77,190,255,.35);padding:14px 18px;display:flex;justify-content:space-between;color:#9bdcff;font-size:14px}
 .terminal-body{padding:70px 35px;text-align:center;min-height:620px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.badge{width:120px;height:120px;border:3px solid #67cfff;border-radius:50%;display:grid;place-items:center;margin-bottom:18px;background:rgba(6,24,40,.85);box-shadow:0 0 25px rgba(80,200,255,.45);font-size:54px}
+.badge{width:120px;height:120px;border:3px solid #67cfff;border-radius:50%;display:grid;place-items:center;margin-bottom:18px;background:rgba(6,24,40,.85);box-shadow:0 0 25px rgba(80,200,255,.45);font-size:54px;animation:pulse 3s infinite}
+@keyframes pulse{50%{box-shadow:0 0 42px rgba(80,200,255,.72)}}
 .logo-subline{color:#89d9ff;letter-spacing:3px;font-size:13px;font-weight:bold;margin-bottom:8px;text-transform:uppercase}
 h1{font-size:clamp(38px,6vw,78px);color:#7fd3ff;margin-top:10px;text-shadow:0 0 24px rgba(100,200,255,.35)}
 .subtitle{font-size:clamp(20px,2.2vw,30px);color:#f0fbff;margin:12px 0 22px;text-shadow:0 0 12px rgba(0,0,0,.8)}
-.slogan{color:#d5ecf8;max-width:820px;margin:0 auto 30px;font-size:19px;text-shadow:0 0 12px rgba(0,0,0,.9)}
+.slogan{color:#d5ecf8;max-width:840px;margin:0 auto 30px;font-size:19px;text-shadow:0 0 12px rgba(0,0,0,.9)}
 .button-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 .btn{padding:14px 28px;border-radius:12px;text-decoration:none;color:white;font-weight:bold;background:linear-gradient(135deg,#1d7dd8,#36c0ff);box-shadow:0 0 22px rgba(0,160,255,.25);transition:.25s}
 .btn.secondary{background:rgba(2,7,13,.35);border:1px solid #57c9ff;color:#9bdcff}.btn.archive{background:linear-gradient(135deg,#b47b22,#ffd36b);color:#07111b}
-.btn:hover{transform:translateY(-2px)}
-.bootline{margin:28px auto 0;max-width:720px;padding:14px;border:1px solid rgba(98,255,156,.25);border-radius:12px;background:rgba(2,7,13,.55);font-family:Consolas,monospace;color:#9dffbf;text-align:left}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(80,200,255,.35)}
+.livebar{margin:28px auto 0;max-width:780px;padding:14px;border:1px solid rgba(98,255,156,.25);border-radius:12px;background:rgba(2,7,13,.60);font-family:Consolas,monospace;color:#9dffbf;text-align:left}
+.cursor{animation:blink 1s infinite}@keyframes blink{50%{opacity:.2}}
+
 section{margin:34px 0;padding:34px;border-radius:22px;background:rgba(6,20,34,.86);border:1px solid rgba(77,190,255,.22);box-shadow:0 0 24px rgba(0,140,255,.08)}
 section h2{color:#7fd3ff;font-size:30px;margin-bottom:22px;border-bottom:1px solid rgba(77,190,255,.25);padding-bottom:10px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
 .card{background:rgba(12,35,55,.92);border:1px solid rgba(95,205,255,.28);border-radius:18px;padding:22px}.card h3{color:white;margin-bottom:8px;font-size:21px}.card p{color:#c8dfed}
-.green{color:#62ff9c;font-weight:bold}.gold{color:#ffd36b}
+.green{color:#62ff9c;font-weight:bold}.gold{color:#ffd36b}.red{color:#ff9b7a}.blue{color:#7fd3ff}
 .split{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:stretch}
 .cinematic-card{min-height:330px;border-radius:18px;border:1px solid rgba(95,205,255,.28);background:linear-gradient(rgba(2,7,13,.25),rgba(2,7,13,.75)),url("bilder/orca-titel.png") center/cover no-repeat;display:flex;align-items:flex-end;padding:24px}
 .cinematic-card.drake{background:linear-gradient(rgba(2,7,13,.25),rgba(2,7,13,.78)),url("bilder/drake-patrouille.png") center/cover no-repeat}
 .cinematic-card.occator{background:linear-gradient(rgba(2,7,13,.25),rgba(2,7,13,.78)),url("bilder/occator-transit.png") center/cover no-repeat}
 .cinematic-card h3{font-size:26px;color:white;text-shadow:0 0 12px #000}.cinematic-card p{color:#d7efff;text-shadow:0 0 10px #000}
 .archive-preview{border-left:5px solid #ffd36b;background:rgba(255,211,107,.08);border-radius:16px;padding:22px}
+
+.news{display:grid;gap:16px}
+.newsitem{border-left:5px solid #1b7fc8;background:rgba(10,35,55,.8);border-radius:14px;padding:18px}
+.newsitem h3{color:white;margin-bottom:8px}.newsitem small{color:#8fd5ff;font-family:Consolas,monospace}
+.commform input,.commform textarea{width:100%;background:#02070d;border:1px solid #1b7fc8;color:#dff7ff;border-radius:10px;padding:12px;font-family:Consolas,monospace;margin:7px 0}.commform textarea{min-height:110px}
+.send{background:linear-gradient(135deg,#b47b22,#ffd36b);color:#07111b;border:0;border-radius:10px;padding:13px 20px;font-weight:bold;cursor:pointer}.sent{display:none;color:#62ff9c;margin-top:12px;font-family:Consolas,monospace}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
 .gallery-item{height:210px;border-radius:18px;border:1px solid rgba(95,205,255,.28);background:#07111b;overflow:hidden;position:relative;cursor:pointer}
 .gallery-item img{width:100%;height:100%;object-fit:cover;display:block;opacity:.84;transition:.3s}.gallery-item span{position:absolute;left:0;right:0;bottom:0;padding:12px;background:rgba(2,7,13,.84);color:#bfeaff;font-weight:bold;text-align:center}.gallery-item:hover img{transform:scale(1.05);opacity:1}
 .notice{padding:18px;border-radius:14px;background:rgba(0,130,200,.10);border:1px solid rgba(95,205,255,.20);color:#cbe8f8}
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:3000;align-items:center;justify-content:center;padding:30px}.lightbox.active{display:flex}
-.lightbox-content{max-width:95vw;max-height:90vh;text-align:center}.lightbox-content img{max-width:100%;max-height:80vh;border-radius:14px;border:1px solid rgba(95,205,255,.45)}.lightbox-caption{margin-top:14px;color:#bfeaff;font-size:20px;font-weight:bold}
-.close{position:fixed;top:22px;right:32px;font-size:42px;color:#9bdcff;cursor:pointer;z-index:3100}
+.lightbox-content{max-width:95vw;max-height:90vh;text-align:center}.lightbox-content img{max-width:100%;max-height:80vh;border-radius:14px;border:1px solid rgba(95,205,255,.45)}.lightbox-caption{margin-top:14px;color:#bfeaff;font-size:20px;font-weight:bold}.close{position:fixed;top:22px;right:32px;font-size:42px;color:#9bdcff;cursor:pointer;z-index:3100}
 footer{text-align:center;color:#7f9fb5;padding:45px 10px}
-@media(max-width:850px){.split{grid-template-columns:1fr}.menu-inner{flex-direction:column;gap:10px}.links a{margin:0 8px;font-size:13px}.wrapper{padding-top:140px}.terminal-body{padding:42px 20px;min-height:560px}}
+@media(max-width:850px){.split{grid-template-columns:1fr}.menu-inner{flex-direction:column;gap:10px}.links a{margin:0 8px;font-size:13px}.wrapper{padding-top:150px}.terminal-body{padding:42px 20px;min-height:560px}}
 </style>
 </head>
 <body>
-<nav class="menu"><div class="menu-inner"><div class="brand">NORDSEE MINING GmbH</div><div class="links"><a href="#home">Home</a><a href="#status">Status</a><a href="chronik.html">Archiv</a><a href="schiffsregister.html">Schiffsregister</a><a href="terminal.html">Terminal</a><a href="nmg-net.html">NMG NET</a></div></div></nav>
+<div class="scan"></div>
+<div class="bootscreen"><div class="bootbox"><h2>NMG BIOS</h2><div class="bootline">Memory check ........ OK</div><div class="bootline">Connecting Waskisen node ........ OK</div><div class="bootline">Loading public archive ........ OK</div><div class="bootline">Operational data redacted ........ OK</div><div class="bootline">Welcome Capsuleer.</div><div class="bar"><span></span></div></div></div>
+
+<nav class="menu"><div class="menu-inner"><div class="brand">NORDSEE MINING GmbH</div><div class="links"><a href="#home">Home</a><a href="#news">News</a><a href="chronik.html">Archiv</a><a href="schiffsregister.html">Schiffsregister</a><a href="terminal.html">Terminal</a><a href="nmg-net.html">NMG NET</a></div></div></nav>
+
 <div class="wrapper">
 <div class="hero" id="home"><div class="terminal"><div class="terminal-top"><span>Industrial Control Terminal</span><span>Waskisen · The Citadel · Highsec</span></div><div class="terminal-body">
 <div class="badge">🛡️</div><div class="logo-subline">Waskisen Industrial Division</div><h1>Nordsee Mining GmbH</h1><div class="subtitle">Eine Legende aus dem Belt</div>
 <p class="slogan">Man erzählt sich, dass irgendwo im Caldari-Raum eine kleine Industriegesellschaft arbeitet. Unauffällig. Ruhig. Aber ihre Schiffe tauchen immer wieder dort auf, wo aus Erz Geschichten werden.</p>
-<div class="button-row"><a class="btn archive" href="chronik.html">📂 Firmenarchiv öffnen</a><a class="btn" href="nmg-net.html">NMG NET starten</a><a class="btn secondary" href="#flotte">Flotte ansehen</a></div>
-<div class="bootline">NMG TERMINAL &gt; Archivmodus aktiv · keine Live-Daten · Freigabestufe öffentlich █</div>
+<div class="button-row"><a class="btn archive" href="chronik.html">📂 Firmenarchiv öffnen</a><a class="btn" href="nmg-net.html">NMG NET starten</a><a class="btn secondary" href="#communication">Transmission senden</a></div>
+<div class="livebar">NMG TERMINAL &gt; Archivmodus aktiv · keine Live-Daten · Freigabestufe öffentlich <span class="cursor">█</span></div>
 </div></div></div>
 
 <section id="legende"><h2>🌌 Die Legende von Waskisen</h2><p>Nicht jede Akte ist vollständig. Nicht jede Route ist öffentlich. Doch jede Geschichte gehört zur Nordsee Mining GmbH.</p><p class="notice" style="margin-top:16px;">Dieses Portal ist ein historisches Firmenarchiv und Fanprojekt. Operative Details wurden durch die Archivabteilung angepasst oder entfernt.</p></section>
 
+<section id="news"><h2>📰 NMG News Network</h2><div class="news">
+<div class="newsitem"><small>ARCHIVMELDUNG · INDUSTRIE</small><h3>Operation Vollauslastung dokumentiert</h3><p>Mehrere Skiffs arbeiteten im Verband unter Führung der Orca. Der Belt wurde großflächig abgebaut. Einsatzstatus: erfolgreich archiviert.</p></div>
+<div class="newsitem"><small>ARCHIVMELDUNG · LOGISTIK</small><h3>Heavy-Water-Versorgung abgeschlossen</h3><p>Nach einer ersten, sehr optimistischen Transportlösung wurde die Logistikabteilung neu disponiert. 70.000 Einheiten Heavy Water wurden eingelagert.</p></div>
+<div class="newsitem"><small>ARCHIVMELDUNG · SICHERHEIT</small><h3>Waskisen bleibt unter Beobachtung</h3><p>Die Sicherheitsabteilung meldet erhöhte Aufmerksamkeit. Local beobachten. D-Scan bereithalten. Keine Panik.</p></div>
+</div></section>
+
 <section id="status"><h2>📡 Firmenstatus</h2><div class="grid"><div class="card"><h3>Status</h3><p class="green">● Archiv online</p></div><div class="card"><h3>Heimatsystem</h3><p>Waskisen</p></div><div class="card"><h3>Flottenstärke</h3><p>1 Orca · 4 Skiffs · 1 Occator · 1 Drake</p></div><div class="card"><h3>Firmenmotto</h3><p class="gold">Erz rein – ISK raus</p></div></div></section>
 
-<section><h2>📂 Firmenarchiv</h2><div class="split"><div class="archive-preview"><h3>Archivmodus aktiviert</h3><p>Die Webseite zeigt keine aktuellen Routen, keine Live-Zahlen und keine persönlichen Daten. Was hier sichtbar ist, sind freigegebene Akten, Geschichten und Bilddokumente aus dem Firmenarchiv.</p><a class="btn archive" href="chronik.html">Archiv betreten</a></div><div class="cinematic-card drake"><div><h3>Final Warning VII</h3><p>Drake · Patrouille · Gefahrenabwehr</p></div></div></div></section>
+<section><h2>📂 Firmenarchiv</h2><div class="split"><div class="archive-preview"><h3>Archivmodus aktiviert</h3><p>Die Webseite zeigt keine aktuellen Routen, keine Live-Zahlen und keine persönlichen Daten. Sichtbar sind freigegebene Akten, Geschichten und Bilddokumente.</p><a class="btn archive" href="chronik.html">Archiv betreten</a></div><div class="cinematic-card drake"><div><h3>Final Warning VII</h3><p>Drake · Patrouille · Gefahrenabwehr</p></div></div></div></section>
 
 <section id="flotte"><h2>🚛 Unsere Flotte</h2><div class="grid"><div class="card"><h3>🐋 Bollwerk Prime VI</h3><p>Orca · Herzstück der Flotte · Kommandoschiff im Belt</p></div><div class="card"><h3>⛏️ Skiff-Flotte</h3><p>Vier robuste Abbauschiffe mit Orca-Unterstützung.</p></div><div class="card"><h3>🚛 Bollwerk Transit</h3><p>Occator · Transporter · Lebensader der Logistik.</p></div><div class="card"><h3>🛡️ Final Warning VII</h3><p>Drake · Patrouille · bewaffnete Rückversicherung.</p></div></div></section>
 
-<section><h2>🐋 Industrieabteilung</h2><div class="split"><div class="cinematic-card"><div><h3>Bollwerk Prime VI</h3><p>Orca · Flottenkommando · Heimathafen Waskisen</p></div></div><div class="archive-preview"><h3>Tagschicht</h3><p>Die Orca steht für Ruhe, Struktur und Produktion. Um sie herum entstehen die täglichen Einsatzberichte der Nordsee Mining GmbH.</p></div></div></section>
-
 <section><h2>🚛 Logistikabteilung</h2><div class="split"><div class="archive-preview"><h3>Bollwerk Transit</h3><p>Wenn die Occator abdockt, wird aus Erz Kapital. Routen und Uhrzeiten bleiben grundsätzlich geschwärzt.</p></div><div class="cinematic-card occator"><div><h3>Bollwerk Transit</h3><p>Occator · Logistik · Archivbild</p></div></div></div></section>
+
+<section id="communication"><h2>📡 Kommunikationskonsole</h2><p class="notice">Keine stumpfe Gästebuch-Funktion. Besucher senden eine Transmission an das Firmenarchiv.</p><div class="commform"><input id="sender" placeholder="Absender / Rufname"><input id="system" placeholder="System / Corporation"><textarea id="msg" placeholder="Übertragung eingeben"></textarea><button class="send" onclick="sendTransmission()">Übertragung senden</button><div class="sent" id="sent">Signal übertragen. Transmission im lokalen Archiv vorgemerkt.</div></div></section>
 
 <section id="galerie"><h2>🖼 Galerie</h2><div class="gallery">
 <div class="gallery-item" onclick="openLightbox('bilder/drake-titel.png','Final Warning VII')"><img src="bilder/drake-titel.png" alt="Final Warning VII"><span>Final Warning VII</span></div>
@@ -83,8 +111,6 @@ footer{text-align:center;color:#7f9fb5;padding:45px 10px}
 
 <section id="archivhinweis"><h2>📜 Archivhinweis</h2><p><strong>Nordsee Mining GmbH ist ein EVE-Online-Fanprojekt und Firmenarchiv.</strong></p><p>Alle Einsatzberichte, Zahlen, Zeitangaben und Lageinformationen dienen der Atmosphäre. Die Seite zeigt keine Live-Daten, keine aktuellen Routen und keine echten persönlichen Informationen.</p><p class="notice" style="margin-top:16px;">Freigabestufe: Öffentlich · Operative Details wurden durch die Archivabteilung angepasst oder entfernt.</p></section>
 
-<section><h2>🛡 Sicherheitslage</h2><p>Aktuelle Archiv-Einstufung: <span class="green">Grün bis Gelb</span><br>Waskisen bleibt ein gutes Heimatsystem. Dennoch gilt: Local beobachten, D-Scan nutzen und Logistikdaten nicht öffentlich machen.</p></section>
-
 <footer>Nordsee Mining GmbH · Waskisen Industrial Division · Firmenarchiv · Fly Safe o7</footer>
 </div>
 
@@ -93,6 +119,7 @@ footer{text-align:center;color:#7f9fb5;padding:45px 10px}
 function openLightbox(src,caption){document.getElementById("lightbox-img").src=src;document.getElementById("lightbox-caption").innerText=caption;document.getElementById("lightbox").classList.add("active")}
 function closeLightbox(){document.getElementById("lightbox").classList.remove("active")}
 document.addEventListener("keydown",function(event){if(event.key==="Escape"){closeLightbox()}})
+function sendTransmission(){document.getElementById("sent").style.display="block";document.getElementById("msg").value=""}
 </script>
 </body>
 </html>
