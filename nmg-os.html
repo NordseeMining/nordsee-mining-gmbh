@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NMG OS Genesis</title>
+<title>NMG OS Genesis 0.2</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{height:100vh;overflow:hidden;background:#02070d;color:#dff7ff;font-family:Arial,Helvetica,sans-serif}
-body:before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(2,7,13,.35),rgba(2,7,13,.85)),url("bilder/drake-titel.png") center/cover no-repeat;z-index:-3}
+body:before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(2,7,13,.35),rgba(2,7,13,.86)),url("bilder/drake-titel.png") center/cover no-repeat;z-index:-3}
 body:after{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(41,139,210,.25),transparent 30%),radial-gradient(circle at 80% 80%,rgba(255,211,107,.10),transparent 30%);z-index:-2}
 .scan{position:fixed;inset:0;pointer-events:none;background:linear-gradient(to bottom,transparent 0%,rgba(127,211,255,.05) 50%,transparent 100%);background-size:100% 8px;z-index:999;opacity:.35}
-.boot{position:fixed;inset:0;background:#02070d;z-index:2000;display:flex;align-items:center;justify-content:center;animation:hideBoot .8s ease forwards;animation-delay:3.3s}
+.boot{position:fixed;inset:0;background:#02070d;z-index:2000;display:flex;align-items:center;justify-content:center;animation:hideBoot .8s ease forwards;animation-delay:3.2s}
 .bootbox{width:min(760px,92%);border:1px solid #1b7fc8;border-radius:18px;background:rgba(0,10,18,.96);box-shadow:0 0 50px rgba(0,160,255,.28);padding:28px;font-family:Consolas,monospace;color:#9dffbf}
 .bootbox h1{font-size:28px;color:#7fd3ff;margin-bottom:18px}
 .bootline{opacity:0;margin:8px 0;animation:line .25s forwards}
@@ -23,7 +23,7 @@ body:after{content:"";position:fixed;inset:0;background:radial-gradient(circle a
 .icon{height:105px;border:1px solid rgba(95,205,255,.35);border-radius:16px;background:rgba(4,18,30,.72);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;box-shadow:0 0 20px rgba(0,140,255,.08);transition:.2s}
 .icon:hover{transform:translateY(-3px);box-shadow:0 0 25px rgba(80,200,255,.28);background:rgba(12,35,55,.86)}
 .icon .sym{font-size:34px}.icon span{font-size:13px;color:#dff7ff;font-weight:bold;margin-top:6px}
-.window{position:absolute;left:320px;top:95px;width:min(760px,58vw);min-height:430px;border:1px solid rgba(95,205,255,.45);border-radius:16px;background:rgba(4,15,27,.94);box-shadow:0 0 40px rgba(0,160,255,.22);display:none;overflow:hidden}
+.window{position:absolute;left:320px;top:88px;width:min(820px,60vw);min-height:455px;border:1px solid rgba(95,205,255,.45);border-radius:16px;background:rgba(4,15,27,.95);box-shadow:0 0 40px rgba(0,160,255,.22);display:none;overflow:hidden}
 .window.active{display:block;animation:pop .18s ease}
 @keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
 .title{height:40px;background:#071d2c;border-bottom:1px solid #1b7fc8;display:flex;align-items:center;justify-content:space-between;padding:0 12px;color:#9bdcff;font-family:Consolas,monospace}
@@ -32,8 +32,10 @@ body:after{content:"";position:fixed;inset:0;background:radial-gradient(circle a
 .content h2{color:#7fd3ff;margin-bottom:12px;font-size:30px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:16px}
 .card{background:rgba(12,35,55,.9);border:1px solid rgba(95,205,255,.25);border-radius:14px;padding:16px}
-.card h3{color:white;margin-bottom:8px}.green{color:#62ff9c}.gold{color:#ffd36b}.red{color:#ff9b7a}
+.card h3{color:white;margin-bottom:8px}.green{color:#62ff9c}.gold{color:#ffd36b}.red{color:#ff9b7a}.blue{color:#7fd3ff}
 .terminal{font-family:Consolas,monospace;background:rgba(0,0,0,.32);border-left:4px solid #1b7fc8;border-radius:12px;padding:16px;color:#9dffbf;white-space:pre-wrap;margin-top:14px}
+.btn{display:inline-block;margin-top:12px;margin-right:8px;padding:10px 16px;border-radius:10px;background:linear-gradient(135deg,#1d7dd8,#36c0ff);color:white;text-decoration:none;font-weight:bold}
+.btn.gold{background:linear-gradient(135deg,#b47b22,#ffd36b);color:#07111b}
 .taskbar{position:fixed;left:0;right:0;bottom:0;height:46px;background:rgba(3,13,24,.92);border-top:1px solid rgba(77,190,255,.35);display:flex;align-items:center;gap:10px;padding:0 14px;z-index:60}
 .start{background:linear-gradient(135deg,#1d7dd8,#36c0ff);color:white;border:0;border-radius:10px;padding:10px 18px;font-weight:bold}
 .task{background:#071d2c;color:#9bdcff;border:1px solid #1b7fc8;border-radius:10px;padding:8px 14px;cursor:pointer}
@@ -43,8 +45,9 @@ body:after{content:"";position:fixed;inset:0;background:radial-gradient(circle a
 </head>
 <body>
 <div class="scan"></div>
-<div class="boot"><div class="bootbox"><h1>NMG OS Genesis</h1><div class="bootline">Initializing Waskisen relay ........ OK</div><div class="bootline">Loading public archive ........ OK</div><div class="bootline">Mounting ship register ........ OK</div><div class="bootline">Redacting operational data ........ OK</div><div class="bootline">Welcome Capsuleer.</div><div class="bar"><span></span></div></div></div>
-<div class="topbar"><div>NMG OS Genesis · Public Node</div><div>Waskisen Industrial Division</div></div>
+<div class="boot"><div class="bootbox"><h1>NMG OS Genesis 0.2</h1><div class="bootline">Initializing Waskisen relay ........ OK</div><div class="bootline">Loading public archive ........ OK</div><div class="bootline">Mounting security archive ........ OK</div><div class="bootline">Redacting operational data ........ OK</div><div class="bootline">Welcome Capsuleer.</div><div class="bar"><span></span></div></div></div>
+<div class="topbar"><div>NMG OS Genesis 0.2 · Public Node</div><div>Waskisen Industrial Division</div></div>
+
 <div class="desktop">
 <div class="icons">
 <div class="icon" onclick="openWin('terminal')"><div class="sym">🛰️</div><span>Terminal</span></div>
@@ -53,13 +56,17 @@ body:after{content:"";position:fixed;inset:0;background:radial-gradient(circle a
 <div class="icon" onclick="openWin('map')"><div class="sym">🗺️</div><span>Karte</span></div>
 <div class="icon" onclick="openWin('security')"><div class="sym">🛡️</div><span>Sicherheit</span></div>
 <div class="icon" onclick="openWin('comms')"><div class="sym">📡</div><span>Comms</span></div>
+<div class="icon" onclick="openWin('news')"><div class="sym">📰</div><span>News</span></div>
+<div class="icon" onclick="openWin('about')"><div class="sym">📜</div><span>Über NMG</span></div>
 </div>
+
 <div class="window active" id="welcome"><div class="title"><span>Willkommen</span><button class="close" onclick="closeWin('welcome')">X</button></div><div class="content"><h2>Nordsee Mining GmbH</h2><p>Willkommen im öffentlichen Firmencomputer der Nordsee Mining GmbH.</p><p>Dieses System zeigt freigegebene Akten, historische Meldungen und archivierte Schiffsdaten. Keine Live-Daten. Keine echten Routen. Keine persönlichen Informationen.</p><div class="terminal">SYSTEMSTATUS:
 FIRMENARCHIV ...... ONLINE
+SICHERHEITSARCHIV . ONLINE
 SCHIFFSREGISTER ... ONLINE
 NMG NET ........... ONLINE
-FREIGABESTUFE ..... ÖFFENTLICH
-</div></div></div>
+FREIGABESTUFE ..... ÖFFENTLICH</div></div></div>
+
 <div class="window" id="terminal"><div class="title"><span>Terminal</span><button class="close" onclick="closeWin('terminal')">X</button></div><div class="content"><h2>NMG Terminal</h2><div class="terminal">> status
 
 SYSTEM ............ WASKISEN
@@ -68,9 +75,12 @@ INDUSTRIE ......... AKTIV
 ARCHIV ............ FREIGEGEBEN
 
 > Hinweis:
-Operative Details wurden durch die Archivabteilung geschwärzt.</div></div></div>
-<div class="window" id="fleet"><div class="title"><span>Flottenkonsole</span><button class="close" onclick="closeWin('fleet')">X</button></div><div class="content"><h2>Flottenkonsole</h2><div class="grid"><div class="card"><h3>🐋 Bollwerk Prime VI</h3><p>Orca · <span class="green">Online</span></p></div><div class="card"><h3>🛡️ Final Warning VII</h3><p>Drake · <span class="green">Patrouille</span></p></div><div class="card"><h3>🚛 Bollwerk Transit</h3><p>Occator · <span class="gold">Logistik</span></p></div><div class="card"><h3>⛏️ Skiff-Flotte</h3><p>Mining Wing · <span class="green">Aktiv</span></p></div></div></div></div>
-<div class="window" id="archive"><div class="title"><span>Firmenarchiv</span><button class="close" onclick="closeWin('archive')">X</button></div><div class="content"><h2>Firmenarchiv</h2><p>Freigegebene Akten der Nordsee Mining GmbH.</p><div class="grid"><div class="card"><h3>Chronik</h3><p><a style="color:#7fd3ff" href="chronik.html">chronik.html</a></p></div><div class="card"><h3>Schiffsregister</h3><p><a style="color:#7fd3ff" href="schiffsregister.html">schiffsregister.html</a></p></div><div class="card"><h3>NMG NET</h3><p><a style="color:#7fd3ff" href="nmg-net.html">nmg-net.html</a></p></div></div></div></div>
+Operative Details wurden durch die Archivabteilung geschwärzt.</div><a class="btn" href="terminal.html">Altes Terminal öffnen</a></div></div>
+
+<div class="window" id="fleet"><div class="title"><span>Flottenkonsole</span><button class="close" onclick="closeWin('fleet')">X</button></div><div class="content"><h2>Flottenkonsole</h2><div class="grid"><div class="card"><h3>🐋 Bollwerk Prime VI</h3><p>Orca · <span class="green">Online</span></p></div><div class="card"><h3>🛡️ Final Warning VII</h3><p>Drake · <span class="green">Patrouille</span></p></div><div class="card"><h3>🚛 Bollwerk Transit</h3><p>Occator · <span class="gold">Logistik</span></p></div><div class="card"><h3>⛏️ Skiff-Flotte</h3><p>Mining Wing · <span class="green">Aktiv</span></p></div></div><a class="btn" href="schiffsregister.html">Schiffsregister öffnen</a></div></div>
+
+<div class="window" id="archive"><div class="title"><span>Firmenarchiv</span><button class="close" onclick="closeWin('archive')">X</button></div><div class="content"><h2>Firmenarchiv</h2><p>Freigegebene Akten der Nordsee Mining GmbH.</p><div class="grid"><div class="card"><h3>Chronik</h3><p>Geschichte der Firma.</p><a class="btn" href="chronik.html">Öffnen</a></div><div class="card"><h3>Schiffsregister</h3><p>Aktive Schiffsakten.</p><a class="btn" href="schiffsregister.html">Öffnen</a></div><div class="card"><h3>Sicherheitsarchiv</h3><p>Freigegebene Sicherheitsakten.</p><a class="btn gold" href="sicherheitsarchiv.html">Öffnen</a></div><div class="card"><h3>NMG NET</h3><p>Firmennetzwerk.</p><a class="btn" href="nmg-net.html">Öffnen</a></div></div></div></div>
+
 <div class="window" id="map"><div class="title"><span>Sternenkarte</span><button class="close" onclick="closeWin('map')">X</button></div><div class="content"><h2>Sternenkarte</h2><div class="terminal">          JITA
            ●
            |
@@ -80,19 +90,48 @@ Operative Details wurden durch die Archivabteilung geschwärzt.</div></div></div
         WASKISEN
            ●  Firmenbasis
 
-Hinweis: Karte ist vereinfacht. Operative Routen sind nicht öffentlich.</div></div></div>
+Hinweis: Karte ist vereinfacht.
+Operative Routen sind nicht öffentlich.</div></div></div>
+
 <div class="window" id="security"><div class="title"><span>Sicherheitszentrale</span><button class="close" onclick="closeWin('security')">X</button></div><div class="content"><h2>Sicherheitszentrale</h2><div class="terminal">AKTUELLE ARCHIV-EINSTUFUNG:
 GRÜN BIS GELB
 
 LOCAL ............. BEOBACHTEN
 D-SCAN ............ BEREITHALTEN
+AKTE 0008 ......... UNBEKANNTER PILOT // KILLBOARD-AUSWERTUNG
 AKTE 0001 ......... PILOT Y. // NAME GEÄNDERT
-EMPFEHLUNG ........ KEINE PANIK. WEITERARBEITEN.</div></div></div>
+EMPFEHLUNG ........ KEINE PANIK. WEITERARBEITEN.</div><a class="btn gold" href="sicherheitsarchiv.html">Sicherheitsarchiv öffnen</a></div></div>
+
 <div class="window" id="comms"><div class="title"><span>Kommunikation</span><button class="close" onclick="closeWin('comms')">X</button></div><div class="content"><h2>Kommunikationskonsole</h2><p>Keine gewöhnliche Gästebuch-Funktion. Besucher senden eine Transmission an das Firmenarchiv.</p><div class="terminal">TRANSMISSION #0001
 Absender: Unbekannter Capsuleer
 Nachricht: Fly Safe o7 · Beeindruckende Firmenzentrale.</div></div></div>
+
+<div class="window" id="news"><div class="title"><span>NMG News</span><button class="close" onclick="closeWin('news')">X</button></div><div class="content"><h2>NMG News Network</h2><div class="terminal">ARCHIVMELDUNG:
+Operation Vollauslastung dokumentiert.
+
+ARCHIVMELDUNG:
+Heavy-Water-Versorgung abgeschlossen.
+
+SICHERHEITSMELDUNG:
+Gelb blinkender Pilot im Killboard bestätigt.
+Akte 0008 wurde freigegeben.</div></div></div>
+
+<div class="window" id="about"><div class="title"><span>Über NMG</span><button class="close" onclick="closeWin('about')">X</button></div><div class="content"><h2>Über die Nordsee Mining GmbH</h2><p>Die Nordsee Mining GmbH ist ein EVE-Online-Fanprojekt und ein fiktives Firmenarchiv auf Basis echter Spielerlebnisse.</p><div class="terminal">ORGANISATION:
+Nordsee Mining GmbH
+
+SCHWERPUNKTE:
+Industrie
+Logistik
+Sicherheit
+Chronik
+
+GRUNDSATZ:
+Keine Live-Daten. Keine echten persönlichen Informationen.
+Nur freigegebene Geschichten aus New Eden.</div></div></div>
 </div>
-<div class="taskbar"><button class="start" onclick="openWin('welcome')">NMG OS</button><button class="task" onclick="openWin('terminal')">Terminal</button><button class="task" onclick="openWin('fleet')">Flotte</button><button class="task" onclick="openWin('archive')">Archiv</button><div class="clock" id="clock">--:--</div></div>
+
+<div class="taskbar"><button class="start" onclick="openWin('welcome')">NMG OS</button><button class="task" onclick="openWin('terminal')">Terminal</button><button class="task" onclick="openWin('fleet')">Flotte</button><button class="task" onclick="openWin('archive')">Archiv</button><button class="task" onclick="openWin('security')">Sicherheit</button><div class="clock" id="clock">--:--</div></div>
+
 <script>
 function openWin(id){document.getElementById(id).classList.add('active')}
 function closeWin(id){document.getElementById(id).classList.remove('active')}
