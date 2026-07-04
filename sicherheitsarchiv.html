@@ -1,1 +1,109 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NMG Sicherheitsarchiv</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#02070d;color:#e8f7ff;line-height:1.6;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 20%,rgba(41,139,210,.25),transparent 30%),radial-gradient(circle at 80% 80%,rgba(255,180,60,.12),transparent 30%),linear-gradient(180deg,#07121f,#02070d);z-index:-2}
+body:after{content:"";position:fixed;inset:0;background-image:radial-gradient(1px 1px at 30px 60px,#fff,transparent),radial-gradient(1px 1px at 190px 120px,#8fd5ff,transparent),radial-gradient(2px 2px at 360px 260px,#fff,transparent);background-size:520px 320px;opacity:.16;z-index:-1}
+.menu{position:fixed;top:0;left:0;width:100%;background:rgba(3,13,24,.96);border-bottom:1px solid rgba(77,190,255,.35);z-index:20}
+.menu-inner{max-width:1250px;margin:auto;padding:14px 22px;display:flex;justify-content:space-between;align-items:center}
+.brand{color:#7fd3ff;font-weight:bold;letter-spacing:1px}
+.menu a{color:#9bdcff;text-decoration:none;margin-left:18px;font-weight:bold;font-size:14px}
+.wrap{width:min(1200px,94%);margin:auto;padding:100px 0 50px}
+.hero{border:1px solid rgba(77,190,255,.45);border-radius:24px;background:linear-gradient(rgba(2,7,13,.68),rgba(2,7,13,.92)),url("bilder/drake-titel.png") center/cover no-repeat;min-height:430px;padding:40px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 0 50px rgba(0,160,255,.20)}
+.code{font-family:Consolas,monospace;color:#9dffbf;letter-spacing:2px;text-transform:uppercase}
+h1{font-size:clamp(42px,6vw,76px);color:#7fd3ff;text-shadow:0 0 24px rgba(100,200,255,.35);margin:10px 0}
+.subtitle{font-size:22px;color:#d7f0ff;max-width:850px}
+section{margin:34px 0;padding:34px;border-radius:22px;background:rgba(6,20,34,.88);border:1px solid rgba(77,190,255,.22);box-shadow:0 0 24px rgba(0,140,255,.08)}
+section h2{color:#7fd3ff;font-size:31px;margin-bottom:22px;border-bottom:1px solid rgba(77,190,255,.25);padding-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{background:rgba(12,35,55,.92);border:1px solid rgba(95,205,255,.28);border-radius:18px;padding:22px}
+.card h3{color:white;margin-bottom:8px}.card p{color:#c8dfed}
+.green{color:#62ff9c}.yellow{color:#ffd36b}.red{color:#ff9b7a}.blue{color:#7fd3ff}
+.case{border-left:5px solid #ffd36b;background:rgba(255,211,107,.08);border-radius:18px;padding:24px;margin-bottom:20px}
+.case.redcase{border-left-color:#ff9b7a;background:rgba(255,155,122,.08)}
+.case h3{font-size:28px;color:white;margin-bottom:8px}
+.meta{font-family:Consolas,monospace;color:#9bdcff;margin-bottom:16px}
+.terminal{font-family:Consolas,monospace;background:rgba(0,0,0,.34);border:1px solid rgba(98,255,156,.22);border-left:4px solid #62ff9c;border-radius:14px;padding:18px;color:#9dffbf;white-space:pre-wrap;margin-top:16px}
+.warning{padding:18px;border-radius:14px;background:rgba(0,130,200,.10);border:1px solid rgba(95,205,255,.20);color:#cbe8f8}
+.btn{display:inline-block;margin-top:16px;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:bold;background:linear-gradient(135deg,#1d7dd8,#36c0ff);color:white}
+footer{text-align:center;color:#7f9fb5;padding:40px}
+@media(max-width:760px){.menu-inner{flex-direction:column;gap:8px}.menu a{margin:0 8px}.wrap{padding-top:135px}.hero{padding:28px;min-height:390px}}
+</style>
+</head>
+<body>
+<nav class="menu"><div class="menu-inner"><div class="brand">NORDSEE MINING GmbH</div><div><a href="index.html">Home</a><a href="nmg-os.html">NMG OS</a><a href="nmg-net.html">NMG NET</a><a href="chronik.html">Archiv</a></div></div></nav>
+
+<div class="wrap">
+<header class="hero">
+<div class="code">NMG-SAFE-0001 · Freigabestufe Öffentlich</div>
+<h1>Sicherheitsarchiv</h1>
+<p class="subtitle">Freigegebene Beobachtungen aus Waskisen. Keine Live-Daten. Keine Routen. Nur archivierte Ereignisse, die zur Geschichte der Nordsee Mining GmbH gehören.</p>
+</header>
+
+<section>
+<h2>🛡 Lageübersicht</h2>
+<div class="grid">
+<div class="card"><h3>Aktuelle Archivlage</h3><p class="yellow">● Grün bis Gelb</p></div>
+<div class="card"><h3>Empfehlung</h3><p>Local beobachten · D-Scan bereithalten · MTUs nicht unbeaufsichtigt lassen</p></div>
+<div class="card"><h3>Patrouille</h3><p>Final Warning VII · Bereitschaft</p></div>
+<div class="card"><h3>Hinweis</h3><p>Alle Namen und Details können redaktionell angepasst sein.</p></div>
+</div>
+</section>
+
+<section>
+<h2>📂 Freigegebene Sicherheitsakten</h2>
+
+<article class="case redcase">
+<div class="meta">AKTE 0008 · WASKISEN · KILLBOARD-AUSWERTUNG</div>
+<h3>Der gelb blinkende Pilot</h3>
+<p>Über mehrere Schichten wurde ein gelb blinkender Pilot regelmäßig im Umfeld der Industrieoperationen beobachtet. Sein Verhalten blieb zunächst unklar. Die Sicherheitsabteilung hielt Abstand und dokumentierte die Sichtungen.</p>
+<div class="terminal">AUFKLÄRUNG:
+Pilot ............. yemany
+Ereignis .......... Gila + Capsule verloren
+Quelle ............ öffentliches Killboard
+Bewertung ......... Aufmerksamkeit gerechtfertigt
+
+FAZIT:
+Manchmal beantwortet das Killboard Fragen,
+die Local offenlässt.</div>
+</article>
+
+<article class="case">
+<div class="meta">AKTE 0007 · WASKISEN · CONCORD-EREIGNIS</div>
+<h3>Der blinkende Kollege</h3>
+<p>Ein weiterer auffälliger Kontakt wurde nach einem CONCORD-Ereignis im Sicherheitsarchiv vermerkt. Die Akte bleibt als Erinnerung bestehen, gelb blinkende Schiffe nicht als Dekoration zu betrachten.</p>
+<div class="terminal">EMPFEHLUNG:
+Abstand halten.
+Keine Panik.
+Weiterarbeiten.
+Final Warning VII bleibt in Bereitschaft.</div>
+</article>
+
+<article class="case">
+<div class="meta">AKTE 0006 · LOGISTIK · ARCHIVIERT</div>
+<h3>Operation Jita</h3>
+<p>Eine größere Fracht komprimierten Erzes wurde für den Transport vorbereitet. Öffentliche Akten enthalten keine Route, keine Uhrzeit und keine Live-Angaben.</p>
+<div class="terminal">TRANSPORT:
+Schiff ............ Bollwerk Transit
+Fracht ............ komprimiertes Erz
+Status ............ erfolgreich vorbereitet
+Operative Details . GESCHWÄRZT</div>
+</article>
+</section>
+
+<section>
+<h2>📜 Archivregel</h2>
+<p class="warning"><strong>Das Sicherheitsarchiv ist kein Live-Lagezentrum.</strong><br>Alle Meldungen sind als nachträglich freigegebene Firmenakten formuliert. Aktuelle Positionen, Routen, Zeiten, ISK-Bestände und persönliche Daten werden nicht veröffentlicht.</p>
+<a class="btn" href="nmg-os.html">Zurück zu NMG OS</a>
+</section>
+
+<footer>Nordsee Mining GmbH · Sicherheitsarchiv · Waskisen Industrial Division · Fly Safe o7</footer>
+</div>
+</body>
+</html>
