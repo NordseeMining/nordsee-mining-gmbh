@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NMG OS Genesis 0.4</title>
+<title>NMG OS Genesis 0.5</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{height:100vh;overflow:hidden;background:#02070d;color:#dff7ff;font-family:Arial,Helvetica,sans-serif}
@@ -27,19 +27,29 @@ body:after{content:"";position:fixed;inset:0;background:radial-gradient(circle a
 .newsfeed{position:absolute;right:28px;top:58px;width:310px;border:1px solid rgba(95,205,255,.35);border-radius:16px;background:rgba(4,15,27,.78);box-shadow:0 0 30px rgba(0,160,255,.18);padding:16px;font-family:Consolas,monospace}.newsfeed h3{color:#7fd3ff;margin-bottom:10px}.ticker{color:#9dffbf;min-height:70px}
 .explorer{display:grid;grid-template-columns:260px 1fr;gap:18px;min-height:390px}.tree{border:1px solid rgba(95,205,255,.28);border-radius:14px;background:rgba(0,0,0,.22);padding:14px;font-family:Consolas,monospace}.folder,.file{padding:9px 10px;border-radius:9px;cursor:pointer;margin:4px 0;color:#cbe8f8}.folder:hover,.file:hover,.folder.active,.file.active{background:rgba(77,190,255,.14);color:white}.child{margin-left:18px;border-left:1px solid rgba(95,205,255,.18);padding-left:8px}.viewer{border:1px solid rgba(95,205,255,.28);border-radius:14px;background:rgba(12,35,55,.58);padding:18px}.viewer h3{color:#7fd3ff;font-size:26px;margin-bottom:12px}.mini{font-family:Consolas,monospace;color:#9bdcff;font-size:14px;margin-bottom:8px}
 .taskbar{position:fixed;left:0;right:0;bottom:0;height:46px;background:rgba(3,13,24,.92);border-top:1px solid rgba(77,190,255,.35);display:flex;align-items:center;gap:10px;padding:0 14px;z-index:60}.start{background:linear-gradient(135deg,#1d7dd8,#36c0ff);color:white;border:0;border-radius:10px;padding:10px 18px;font-weight:bold}.task{background:#071d2c;color:#9bdcff;border:1px solid #1b7fc8;border-radius:10px;padding:8px 14px;cursor:pointer}.clock{margin-left:auto;color:#9bdcff;font-family:Consolas,monospace}
+
+.assist{position:absolute;right:28px;bottom:66px;width:330px;border:1px solid rgba(98,255,156,.35);border-radius:16px;background:rgba(0,12,18,.82);box-shadow:0 0 30px rgba(98,255,156,.14);padding:16px;font-family:Consolas,monospace;z-index:40}
+.assist h3{color:#62ff9c;margin-bottom:10px}.assistline{color:#9dffbf;min-height:92px;white-space:pre-wrap}
+.pill{display:inline-block;padding:3px 8px;border-radius:999px;background:rgba(98,255,156,.12);border:1px solid rgba(98,255,156,.28);color:#9dffbf;font-size:12px;margin-top:8px}
+.fileblock{margin-top:14px;padding:12px;border-radius:12px;background:rgba(0,0,0,.22);border:1px solid rgba(95,205,255,.18)}
+@media(max-width:1050px){.assist{display:none}}
+
 @media(max-width:1050px){.newsfeed{display:none}}@media(max-width:850px){body{overflow:auto}.desktop{height:auto;min-height:100vh;padding-bottom:70px}.icons{grid-template-columns:repeat(3,95px);width:auto}.window{position:relative;left:auto;top:auto;width:100%;margin-top:22px}.taskbar{position:fixed}.icon{height:92px}.explorer,.financebox{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="scan"></div>
-<div class="boot"><div class="bootbox"><h1>NMG OS Genesis 0.4</h1><div class="bootline">Loading Control Center ........ OK</div><div class="bootline">Mounting Finance module ........ OK</div><div class="bootline">Synchronizing production board . OK</div><div class="bootline">Redacting live market data ..... OK</div><div class="bootline">Welcome Capsuleer.</div><div class="bar"><span></span></div></div></div>
-<div class="topbar"><div>NMG OS Genesis 0.4 · Control Center</div><div>Waskisen Industrial Division</div></div>
+<div class="boot"><div class="bootbox"><h1>NMG OS Genesis 0.5</h1><div class="bootline">Loading Control Center ........ OK</div><div class="bootline">Mounting Finance module ........ OK</div><div class="bootline">Synchronizing production board . OK</div><div class="bootline">Redacting live market data ..... OK</div><div class="bootline">Welcome Capsuleer.</div><div class="bar"><span></span></div></div></div>
+<div class="topbar"><div>NMG OS Genesis 0.5 · Control Center</div><div>Waskisen Industrial Division</div></div>
 <div class="desktop">
 <div class="icons">
-<div class="icon" onclick="openWin('dashboard')"><div class="sym">📊</div><span>Dashboard</span></div><div class="icon" onclick="openWin('finance')"><div class="sym">💰</div><span>Finanzen</span></div><div class="icon" onclick="openWin('production')"><div class="sym">⛏️</div><span>Produktion</span></div><div class="icon" onclick="openWin('explorer')"><div class="sym">📁</div><span>Explorer</span></div><div class="icon" onclick="openWin('fleet')"><div class="sym">🚢</div><span>Flotte</span></div><div class="icon" onclick="openWin('security')"><div class="sym">🛡️</div><span>Sicherheit</span></div><div class="icon" onclick="openWin('comms')"><div class="sym">📡</div><span>Comms</span></div><div class="icon" onclick="openWin('about')"><div class="sym">📜</div><span>Über NMG</span></div>
+<div class="icon" onclick="openWin('dashboard')"><div class="sym">📊</div><span>Dashboard</span></div><div class="icon" onclick="openWin('finance')"><div class="sym">💰</div><span>Finanzen</span></div><div class="icon" onclick="openWin('production')"><div class="sym">⛏️</div><span>Produktion</span></div><div class="icon" onclick="openWin('explorer')"><div class="sym">📁</div><span>Explorer</span></div><div class="icon" onclick="openWin('fleet')"><div class="sym">🚢</div><span>Flotte</span></div><div class="icon" onclick="openWin('security')"><div class="sym">🛡️</div><span>Sicherheit</span></div><div class="icon" onclick="openWin('comms')"><div class="sym">📡</div><span>Comms</span></div><div class="icon" onclick="openWin('about')"><div class="sym">📜</div><span>Über NMG</span></div><div class="icon" onclick="openWin('assistwin')"><div class="sym">🤖</div><span>NMG Assist</span></div>
 </div>
 <div class="newsfeed"><h3>NMG NEWS</h3><div class="ticker" id="ticker">Lade Firmenmeldungen...</div></div>
-<div class="window active" id="welcome"><div class="title"><span>Willkommen</span><button class="close" onclick="closeWin('welcome')">X</button></div><div class="content"><h2>Nordsee Mining GmbH</h2><p>Willkommen im öffentlichen Firmencomputer der Nordsee Mining GmbH.</p><p>Genesis 0.4 aktiviert das Control Center: Finanzen, Produktion und Firmenmeldungen.</p><div class="terminal">SYSTEMSTATUS:
+
+<div class="assist"><h3>NMG ASSIST</h3><div class="assistline" id="assistline">Initialisiere Firmen-KI...</div><span class="pill">Public Archive Mode</span></div>
+
+<div class="window active" id="welcome"><div class="title"><span>Willkommen</span><button class="close" onclick="closeWin('welcome')">X</button></div><div class="content"><h2>Nordsee Mining GmbH</h2><p>Willkommen im öffentlichen Firmencomputer der Nordsee Mining GmbH.</p><p>Genesis 0.5 aktiviert NMG Assist und erweitert den Explorer zur Firmenzentrale.</p><div class="terminal">SYSTEMSTATUS:
 CONTROL CENTER ..... ONLINE
 FINANCE MODUL ...... ONLINE
 PRODUKTION ......... ONLINE
@@ -56,7 +66,23 @@ Hinweis ............ keine Live-Bilanz</div></div></div>
 <div class="window" id="production"><div class="title"><span>Produktionszentrale</span><button class="close" onclick="closeWin('production')">X</button></div><div class="content"><h2>Produktionszentrale</h2><div class="grid"><div class="card"><h3>🐋 Orca</h3><p class="green">Bollwerk Prime VI · online</p><div class="statbar"><span style="width:92%"></span></div></div><div class="card"><h3>⛏️ Skiffs</h3><p class="green">Mining Wing · 4 aktiv</p><div class="statbar"><span style="width:88%"></span></div></div><div class="card"><h3>📦 Kompression</h3><p class="green">Aktiv</p><div class="statbar"><span style="width:80%"></span></div></div><div class="card"><h3>💧 Heavy Water</h3><p class="gold">Vorrat vorhanden</p><div class="statbar"><span style="width:70%"></span></div></div></div><div class="terminal">PRODUKTIONSNOTIZ:
 Ein vollständiger Belt wurde abgearbeitet.
 Die Industrieabteilung bestreitet, dabei übertrieben zu haben.</div></div></div>
-<div class="window" id="explorer"><div class="title"><span>NMG Explorer</span><button class="close" onclick="closeWin('explorer')">X</button></div><div class="content"><h2>NMG Explorer</h2><div class="explorer"><div class="tree"><div class="folder active" onclick="viewFile('root',this)">📁 NMG Hauptarchiv</div><div class="child"><div class="file" onclick="viewFile('heavywater',this)">📄 Heavy-Water-Akte</div><div class="file" onclick="viewFile('jita',this)">📄 Operation Jita</div><div class="file" onclick="viewFile('finance',this)">📄 Finanzbericht</div><div class="file" onclick="viewFile('yellow',this)">📄 Gelber Kontakt</div><div class="file" onclick="viewFile('orca',this)">🐋 Bollwerk Prime VI</div><div class="file" onclick="viewFile('transit',this)">🚛 Bollwerk Transit</div></div></div><div class="viewer" id="viewer"><div class="mini">NMG://hauptarchiv</div><h3>NMG Hauptarchiv</h3><p>Öffentlicher Aktenbestand der Nordsee Mining GmbH.</p><p>Links eine Akte auswählen.</p></div></div></div></div>
+<div class="window" id="explorer"><div class="title"><span>NMG Explorer</span><button class="close" onclick="closeWin('explorer')">X</button></div><div class="content"><h2>NMG Explorer</h2><div class="explorer"><div class="tree"><div class="folder active" onclick="viewFile('root',this)">📁 NMG Hauptarchiv</div><div class="child"><div class="folder" onclick="viewFile('firma',this)">📂 Firmenarchiv</div>
+<div class="file" onclick="viewFile('history',this)">📄 Legende von Waskisen</div>
+<div class="file" onclick="viewFile('heavywater',this)">📄 Heavy-Water-Akte</div>
+<div class="file" onclick="viewFile('jita',this)">📄 Operation Jita</div>
+<div class="file" onclick="viewFile('finance',this)">📄 Finanzbericht</div>
+<div class="folder" onclick="viewFile('produktion',this)">📂 Produktion</div>
+<div class="file" onclick="viewFile('beltclear',this)">📄 Leerer Horizont</div>
+<div class="file" onclick="viewFile('vollauslastung',this)">📄 Vollauslastung</div>
+<div class="folder" onclick="viewFile('sicherheit',this)">📂 Sicherheit</div>
+<div class="file" onclick="viewFile('yellow',this)">📄 Gelber Kontakt</div>
+<div class="folder" onclick="viewFile('flotte',this)">📂 Flotte</div>
+<div class="file" onclick="viewFile('orca',this)">🐋 Bollwerk Prime VI</div>
+<div class="file" onclick="viewFile('drake',this)">🛡 Final Warning VII</div>
+<div class="file" onclick="viewFile('transit',this)">🚛 Bollwerk Transit</div>
+<div class="file" onclick="viewFile('skiffs',this)">⛏ Mining Wing</div>
+<div class="folder" onclick="viewFile('galerie',this)">📂 Galerie</div>
+<div class="file" onclick="viewFile('bilder',this)">🖼 Bilddokumente</div></div></div><div class="viewer" id="viewer"><div class="mini">NMG://hauptarchiv</div><h3>NMG Hauptarchiv</h3><p>Öffentlicher Aktenbestand der Nordsee Mining GmbH.</p><p>Links eine Akte auswählen.</p></div></div></div></div>
 <div class="window" id="fleet"><div class="title"><span>Flottenkonsole</span><button class="close" onclick="closeWin('fleet')">X</button></div><div class="content"><h2>Flottenkonsole</h2><div class="grid"><div class="card"><h3>🐋 Bollwerk Prime VI</h3><p>Orca · <span class="green">Online</span></p></div><div class="card"><h3>🛡️ Final Warning VII</h3><p>Drake · <span class="green">Patrouille</span></p></div><div class="card"><h3>🚛 Bollwerk Transit</h3><p>Occator · <span class="gold">Logistik</span></p></div><div class="card"><h3>⛏️ Skiff-Flotte</h3><p>Mining Wing · <span class="green">Aktiv</span></p></div></div><a class="btn" href="schiffsregister.html">Schiffsregister öffnen</a></div></div>
 <div class="window" id="security"><div class="title"><span>Sicherheitszentrale</span><button class="close" onclick="closeWin('security')">X</button></div><div class="content"><h2>Sicherheitszentrale</h2><div class="terminal">AKTUELLE ARCHIV-EINSTUFUNG:
 GRÜN BIS GELB
@@ -68,12 +94,27 @@ EMPFEHLUNG ........ KEINE PANIK. WEITERARBEITEN.</div><a class="btn gold" href="
 <div class="window" id="comms"><div class="title"><span>Kommunikation</span><button class="close" onclick="closeWin('comms')">X</button></div><div class="content"><h2>Kommunikationskonsole</h2><p>Besucher senden eine Transmission an das Firmenarchiv.</p><div class="terminal">TRANSMISSION #0001
 Absender: Unbekannter Capsuleer
 Nachricht: Fly Safe o7 · Beeindruckende Firmenzentrale.</div></div></div>
+
+<div class="window" id="assistwin"><div class="title"><span>NMG Assist</span><button class="close" onclick="closeWin('assistwin')">X</button></div><div class="content"><h2>NMG Assist</h2><p>Fiktive Firmen-KI der Nordsee Mining GmbH. Sie wertet keine echten Live-Daten aus, sondern zeigt freigegebene Archivmeldungen.</p><div class="terminal">NMG ASSIST:
+Willkommen, Chef.
+
+4 Skiffs registriert.
+Orca verfügbar.
+Logistik stabil.
+Finanzlage stark.
+Sicherheitslage grün bis gelb.
+
+Empfehlung:
+Kaffee bereitstellen.
+Belt lokalisieren.
+Keine Live-Routen veröffentlichen.</div></div></div>
+
 <div class="window" id="about"><div class="title"><span>Über NMG</span><button class="close" onclick="closeWin('about')">X</button></div><div class="content"><h2>Über die Nordsee Mining GmbH</h2><p>Die Nordsee Mining GmbH ist ein EVE-Online-Fanprojekt und ein fiktives Firmenarchiv auf Basis echter Spielerlebnisse.</p><div class="terminal">GRUNDSATZ:
 Keine Live-Daten.
 Keine echten persönlichen Informationen.
 Nur freigegebene Geschichten aus New Eden.</div></div></div>
 </div>
-<div class="taskbar"><button class="start" onclick="openWin('welcome')">NMG OS</button><button class="task" onclick="openWin('dashboard')">Dashboard</button><button class="task" onclick="openWin('finance')">Finanzen</button><button class="task" onclick="openWin('production')">Produktion</button><button class="task" onclick="openWin('explorer')">Explorer</button><div class="clock" id="clock">--:--</div></div>
+<div class="taskbar"><button class="start" onclick="openWin('welcome')">NMG OS</button><button class="task" onclick="openWin('dashboard')">Dashboard</button><button class="task" onclick="openWin('finance')">Finanzen</button><button class="task" onclick="openWin('production')">Produktion</button><button class="task" onclick="openWin('explorer')">Explorer</button><button class="task" onclick="openWin('assistwin')">Assist</button><div class="clock" id="clock">--:--</div></div>
 <script>
 function openWin(id){document.getElementById(id).classList.add('active')}
 function closeWin(id){document.getElementById(id).classList.remove('active')}
@@ -81,8 +122,29 @@ function tick(){const d=new Date();document.getElementById('clock').textContent=
 tick();setInterval(tick,1000);
 const messages=['Operation Jita erfolgreich archiviert.','Firmenkonto überschreitet 3 Milliarden ISK.','Produktion in Waskisen aktiv.','Heavy Water Vorrat bestätigt.','Sicherheitslage: Grün bis Gelb.','Fly Safe o7'];let mi=0;
 function rotateTicker(){document.getElementById('ticker').textContent=messages[mi];mi=(mi+1)%messages.length}rotateTicker();setInterval(rotateTicker,4200);
-const files={root:['NMG://hauptarchiv','NMG Hauptarchiv','Öffentlicher Aktenbestand der Nordsee Mining GmbH.','Links eine Akte auswählen.'],heavywater:['NMG://firmenarchiv/heavy-water','Heavy-Water-Akte','Erst wurde optimistisch mit einer Skiff geplant. Danach übernahm die Logistikabteilung.','Ergebnis: Heavy Water eingelagert.'],jita:['NMG://logistik/operation-jita','Operation Jita','Archivierte Handelsoperation mit Bollwerk Transit.','Routen, Uhrzeiten und exakte Mengen bleiben geschwärzt.'],finance:['NMG://finanzen/marktbericht','Finanzbericht','Firmenkonto über 3 Milliarden ISK.','Öffentliche Zahlen sind gerundet und nicht live.'],yellow:['NMG://sicherheit/akte-0008','Gelber Kontakt','Ein auffälliger Pilot wurde beobachtet.','Das Killboard lieferte später eine Erklärung. Name redaktionell entfernt.'],orca:['NMG://flotte/orca','Bollwerk Prime VI','Orca · Flottenkommando · Industrieabteilung.','Das Herz der Firma.'],transit:['NMG://flotte/transit','Bollwerk Transit','Occator · Logistik · Jita-Operationen.','Wenn sie abdockt, wird aus Erz Kapital.']};
-function viewFile(key,el){document.querySelectorAll('.folder,.file').forEach(x=>x.classList.remove('active'));el.classList.add('active');const f=files[key];document.getElementById('viewer').innerHTML='<div class="mini">'+f[0]+'</div><h3>'+f[1]+'</h3><p>'+f[2]+'</p><p>'+f[3]+'</p>';}
+const assistMessages=[
+'Willkommen, Chef.\nFirmenarchiv online.\nProduktion aktiv.',
+'Bollwerk Prime VI registriert.\nMining Wing bereit.\nKompression verfügbar.',
+'Finanzlage: stark.\nJita-Verkäufe archiviert.\nKeine Live-Zahlen öffentlich.',
+'Sicherheitslage: grün bis gelb.\nLocal beobachten.\nD-Scan bereithalten.',
+'Empfehlung: Kaffee sichern.\nDann Belt säubern.\nFly Safe o7.'
+];let ai=0;
+function rotateAssist(){document.getElementById('assistline').textContent=assistMessages[ai];ai=(ai+1)%assistMessages.length}
+rotateAssist();setInterval(rotateAssist,5200);
+
+const files={root:['NMG://hauptarchiv','NMG Hauptarchiv','Öffentlicher Aktenbestand der Nordsee Mining GmbH.','Links eine Akte auswählen.'],heavywater:['NMG://firmenarchiv/heavy-water','Heavy-Water-Akte','Erst wurde optimistisch mit einer Skiff geplant. Danach übernahm die Logistikabteilung.','Ergebnis: Heavy Water eingelagert.'],jita:['NMG://logistik/operation-jita','Operation Jita','Archivierte Handelsoperation mit Bollwerk Transit.','Routen, Uhrzeiten und exakte Mengen bleiben geschwärzt.'],finance:['NMG://finanzen/marktbericht','Finanzbericht','Firmenkonto über 3 Milliarden ISK.','Öffentliche Zahlen sind gerundet und nicht live.'],yellow:['NMG://sicherheit/akte-0008','Gelber Kontakt','Ein auffälliger Pilot wurde beobachtet.','Das Killboard lieferte später eine Erklärung. Name redaktionell entfernt.'],orca:['NMG://flotte/orca','Bollwerk Prime VI','Orca · Flottenkommando · Industrieabteilung.','Das Herz der Firma.'],transit:['NMG://flotte/transit','Bollwerk Transit','Occator · Logistik · Jita-Operationen.','Wenn sie abdockt, wird aus Erz Kapital.'],
+firma:['NMG://firmenarchiv','Firmenarchiv','Chronik, Einsatzberichte und Firmenanekdoten.','Hier wird aus Mining-Alltag die Legende der Nordsee Mining GmbH.'],
+history:['NMG://firmenarchiv/legende','Die Legende von Waskisen','Eine kleine Industriegesellschaft im Caldari-Raum.','Unauffällig, ruhig und zuverlässig. Wo andere Asteroiden sehen, sieht NMG Möglichkeiten.'],
+produktion:['NMG://produktion','Produktion','Abbau, Kompression und Versorgung.','Die Produktionszentrale dokumentiert freigegebene Schichten und Belt-Berichte.'],
+beltclear:['NMG://produktion/leerer-horizont','Operation Leerer Horizont','Ein vollständiger Belt wurde abgearbeitet.','Die Industrieabteilung bestreitet, dabei übertrieben zu haben.'],
+vollauslastung:['NMG://produktion/vollauslastung','Operation Vollauslastung','Orca und vier Skiffs arbeiteten synchron im Belt.','Für Außenstehende Chaos. Für NMG ein ganz normaler Arbeitstag.'],
+sicherheit:['NMG://sicherheit','Sicherheit','Freigegebene Beobachtungen und Killboard-Auswertungen.','Namen werden redaktionell entfernt oder neutralisiert.'],
+flotte:['NMG://flotte','Flotte','Orca, Occator, Drake und Mining Wing.','Das Rückgrat der Nordsee Mining GmbH.'],
+drake:['NMG://flotte/drake','Final Warning VII','Drake · Sicherheitsabteilung · Patrouille.','Bewaffnete Erinnerung, dass New Eden nicht immer freundlich ist.'],
+skiffs:['NMG://flotte/mining-wing','Mining Wing','Vier robuste Skiffs unter Orca-Unterstützung.','Die eigentliche Arbeit im Belt.'],
+galerie:['NMG://galerie','Galerie','Freigegebene Bilddokumente.','Orca, Skiffs, Logistik und Sicherheitslage als Firmenarchiv.'],
+bilder:['NMG://galerie/bilddokumente','Bilddokumente','Screenshots aus dem Firmenalltag.','Nur ausgewählte Bilder werden archiviert. Nicht jedes Bild wird Legende.']};
+function viewFile(key,el){document.querySelectorAll('.folder,.file').forEach(x=>x.classList.remove('active'));el.classList.add('active');const f=files[key];document.getElementById('viewer').innerHTML='<div class="mini">'+f[0]+'</div><h3>'+f[1]+'</h3><p>'+f[2]+'</p><div class="fileblock"><p>'+f[3]+'</p></div>';}
 </script>
 </body>
 </html>
